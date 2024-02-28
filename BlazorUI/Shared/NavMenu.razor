@@ -1,27 +1,73 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@* override some nav-link attributes *@
+<style>
+    .nav-link {
+        color: white;
+    }
+
+        .nav-link:focus {
+            color: white;
+            text-decoration: underline;
+        }
+</style>
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">BlazorUI</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
-    </div>
-</div>
-
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+        <div>
+            <NavLink class="nav-link" href="#">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </div>
+        <div>
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-account-login" aria-hidden="true"></span> Login/Sign Up
+            </NavLink>
+        </div>
+        <div>
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-briefcase" aria-hidden="true"></span> My Representatives
+            </NavLink>
+        </div>
+        <div>
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-location" aria-hidden="true"></span> Find My District
+            </NavLink>
+        </div>
+        <div>
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-signpost" aria-hidden="true"></span> Find My Polling Place
+            </NavLink>
+        </div>
+        <div>
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-people" aria-hidden="true"></span> Candidates
+            </NavLink>
+        </div>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-box" aria-hidden="true"></span> Election Updates
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-bar-chart" aria-hidden="true"></span> Current Polling
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-graph" aria-hidden="true"></span> Ballot Measures
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-list" aria-hidden="true"></span> Election Laws and Guidelines
             </NavLink>
         </div>
     </nav>
