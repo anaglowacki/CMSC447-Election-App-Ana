@@ -3,8 +3,8 @@
 }
 
 .top-row {
-    height: auto;
-    background-color: rgba(0,0,0,0.4);
+    height: 50vh;
+    align-items: baseline;
 }
 
 .navbar-brand {
