@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace BlazorUI.Models
+namespace BlazorUI
 {
 	public class UserAddress
 	{
