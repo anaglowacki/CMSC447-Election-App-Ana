@@ -1,10 +1,32 @@
 ﻿@page "/FindMyPollingPlace"
 
+
+
 <PageTitle>Find My Polling Place</PageTitle>
 
 <h1>Find My Polling Place</h1>
+<br />
+<h4>Street Adress*:</h4>
+<p></p>
+<EditForm Model="@userInput" OnValidSubmit="@SearchLocation">
+	<DataAnnotationsValidator />
+	<ValidationSummary />
 
+	<InputText id="userStreetAddress" @bind-Value="userInput.userStreetAddress" />
+	<p></p>
+	<h4>Zip Code*:</h4>
+	<p></p>
+	<InputNumber id=userZipCode @bind-Value=userInput.userZipCode />
+	<p></p>
+	<button type="button" class="btn btn-primary">Submit</button>
+</EditForm>
 
 @code {
+	private UserAddress userInput = new UserAddress();
+	//Placeholder
+	private async Task SearchLocation()
+	{
+		userInput = new UserAddress();
+	}
 
 }
