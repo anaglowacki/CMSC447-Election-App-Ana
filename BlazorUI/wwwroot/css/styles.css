@@ -1,0 +1,11 @@
+﻿namespace BlazorUI.wwwroot.css
+
+
+.search-box {
+    padding: 8px;
+    margin-right: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
