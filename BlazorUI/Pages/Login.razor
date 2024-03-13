@@ -1,35 +1,41 @@
 ﻿@page "/Login"
+@inherits LayoutComponentBase
 
 <PageTitle>Login/Set Up</PageTitle>
+<div class="login-container">
+    <div class="login-form">
+        <img src="/MarylandInfoLogo.png" alt="Login Avatar" class="login-avatar" />
+    </div>
 <h1>Login</h1>
 
-<EditForm Model="@loginModel" OnInvalidSubmit="HandleLogin">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+    <EditForm Model="@loginModel" OnInvalidSubmit="HandleLogin">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
 
-    <div class="form-group">
-        <label for="username">Username</label>
-        <InputText id="username" class="form-control" @bind-Value="loginModel.Username" />
-        <ValidationMessage For="@(() => loginModel.Username)" />
+        <div class="form-group">
+            <label for="username">Username</label>
+            <InputText id="username" class="form-control" @bind-Value="loginModel.Username" />
+            <ValidationMessage For="@(() => loginModel.Username)" />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <InputText id="password" class="form-control" @bind-Value="loginModel.Password" />
+            <ValidationMessage For="@(() => loginModel.Password)" />
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Login</button>
+    </EditForm>
+
+    <div class="text-center">
+        <p>Don't have an account? <a href="/register">Register</a></p>  
     </div>
-
-    <div class="form-group">
-        <label for="password">Password</label>
-        <InputText id="password" class="form-control" @bind-Value="loginModel.Password" />
-        <ValidationMessage For="@(() => loginModel.Password)" />
-    </div>
-    <br />
-    <button type="submit" class="btn btn-primary">Login</button>
-</EditForm>
-
-<div class="text-center">
-    <p>Don't have an account? <a href="/register">Register</a></p>
-    
 </div>
 
 @code {
     private LoginModel loginModel = new LoginModel();
 
+    
     private async Task HandleLogin()
     {
         /*
@@ -50,3 +56,7 @@
     }
 
 }
+
+<style>
+
+</style>
