@@ -1,13 +1,23 @@
 ﻿@* override some nav-link attributes *@
 <style>
+    .navbar {
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
     .nav-link {
         color: white;
     }
 
-        .nav-link:focus {
-            color: white;
-            text-decoration: underline;
-        }
+        .nav-link:hover,
+    .nav-link:focus {
+        color: white;
+        text-decoration: underline;
+    }
 </style>
 
 <div class="top-row ps-3 navbar navbar-dark">

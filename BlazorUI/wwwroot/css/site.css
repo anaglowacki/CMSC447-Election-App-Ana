@@ -23,9 +23,47 @@ a, .btn-link {
 }
 
 .content {
-    padding-top: 1.1rem;
+    padding-top: 60px;
 }
 
+.search-box {
+    padding: 8px;
+    margin-right: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.btn-red {
+    background-color: #e21833;
+    border: 1px solid #e21833;
+    color: white;
+    transition: box-shadow 0.3s;
+}
+
+
+    .btn-red:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+
+.btn-yellow {
+    background-color: #ffd200;
+    border: 1px solid #ffd200;
+    color: white;
+    transition: box-shadow 0.3s;
+}
+
+
+.btn-black {
+    background-color: black;
+    border: 1px solid black;
+    color: white;
+    transition: box-shadow 0.3s;
+}
+
+
+.btn:hover {
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }
