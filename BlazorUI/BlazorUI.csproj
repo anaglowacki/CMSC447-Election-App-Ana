@@ -6,4 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="Shared\styles.razor" />
+    <Content Remove="wwwroot\css\banner.png" />
+    <Content Remove="wwwroot\css\styles.css" />
+  </ItemGroup>
+
 </Project>

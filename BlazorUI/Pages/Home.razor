@@ -1,13 +1,126 @@
 ﻿@page "/"
+@inherits LayoutComponentBase
 
-<PageTitle>Home</PageTitle>
+<div class="banner-container">
+    <img src="banner2.png" alt="Banner" class="banner-image" />
+    <h1 class="page-title"><b>MD Election Home</b></h1>
+</div>
 
-<h1>Maryland Election Information</h1>
+<div class="container">
+    <div class="login-container">
+        <h2>Login</h2>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" @bind="username" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" @bind="password" class="form-control" />
+        </div>
+        <button class="btn btn-red" @onclick="Login">Login</button>
+        <button class="btn btn-black" @onclick="CreateAccount">Create Account</button>
+        
+    </div>
 
-This was committed from GitHub to Jira 
+    <div class="search-container">
+        <div class="search-container">
+            <div class="search-title">
+                <h2>Quick Search:</h2>
+            </div>
+        <input type="text" placeholder="Search..." class="search-bar" title="Enter the Candidate's name for Representatives or your address for District and Polling Places" />
+        <button class="btn btn-red">Search<br />Representatives</button>
+        <button class="btn btn-yellow">Search<br />District</button>
+        <button class="btn btn-black">Search<br />Polling Places</button>
+    </div>
+    </div>
+</div>
 
-This is another test
+<style>
+    .banner-container {
+        position: relative;
+        width: 100%;
+        max-width: 100vw;
+        height: auto;
+        overflow: hidden;
+        justify-content:stretch;
+        margin-bottom: 40px;
+    }
+
+    .banner-image {
+        width: 100vw;
+        height: auto;
+        display: block;
+        opacity: 0.3;
+     
+    }
+
+    .page-title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: black;
+        font-size: 100px;
+        z-index: 2;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100vh;
+    }
+
+    .login-container {
+        width: 20%; 
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        justify-content:left;
+    }
+
+    .search-container {
+      
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100vh;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .error-message {
+        color: red;
+        margin-top: 10px;
+    }
+
+    .search-bar {
+        padding: 8px;
+        margin-right: 8px;
+    }
+
+    .search-title {
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+</style>
 
 @code {
+    private string username;
+    private string password;
+    private string errorMessage;
 
+    private void Login()
+    {
+
+    }
+
+    private void CreateAccount()
+    {
+
+    }
 }
