@@ -4,6 +4,60 @@
 
 <h1>My Representatives</h1>
 
+<div class="tabs"> 
+  <input type="radio" class="tabs__radio" name="RepTabs" id="MDRep" checked>
+  <label for="MDRep" class="tabs__label">Maryland Representatives</label>
+  <div class="tabs__content"> 
+    list of MD Reps
+  </div>
+
+  <input type="radio" class="tabs__radio" name="RepTabs"id="StateRep">
+  <label for="StateRep" class="tabs__label">State Representatives</label>
+ <div class="tabs__content"> 
+    list of State Reps
+  </div>
+  
+</div>
+
+<style>
+
+.tabs {
+  display: flex;
+   flex-wrap: wrap;
+  max-width: 800px;
+  font-family: sans-serif;
+}
+
+.tabs__label {
+  padding: 10px 80px;
+  cursor: pointer;
+}
+
+.tabs__radio {
+  display: none;
+}
+
+.tabs__content {
+  order:1;
+  width:100%;
+  font-size: 0.9em;
+  display: none;
+
+}
+
+.tabs__radio:checked + .tabs__label {
+  font-weight: bold;
+  color: #009578;
+  border-bottom: 2px solid #009578;
+}
+
+.tabs__radio:checked + .tabs__label + .tabs__content {
+  display: initial;
+}
+
+</style>
+
+
 @code {
 
 }
