@@ -4,6 +4,30 @@
 
 <h1>My Representatives</h1>
 
-@code {
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <button class="nav-link active" @onclick="ShowMaryland">Maryland</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link active" @onclick="ShowState">State</button>
+    </li>
+</ul>
 
+<div class="tab-content mt-2">
+    <div class="tab-pane fade show active" id="maryland" role="tabpanel">
+    </div>
+    <div class="tab-pane fade" id="state" role="tabpanel">
+    </div>
+</div>
+
+@code {
+    private void ShowMaryland()
+    {
+
+    }
+
+    private void ShowState()
+    {
+
+    }
 }
