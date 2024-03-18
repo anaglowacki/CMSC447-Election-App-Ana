@@ -2,11 +2,18 @@
 @inherits LayoutComponentBase
 
 <PageTitle>Login/Set Up</PageTitle>
+
+
+<div class="banner-container">
+    <img src="banner2.png" alt="Banner" class="banner-image" />
+</div>
+
+
 <div class="login-container">
     <div class="login-form">
         <img src="/MarylandInfoLogo.png" alt="Login Avatar" class="login-avatar" />
-    </div>
-<h1>Login</h1>
+    
+    <h1>Login</h1>
 
     <EditForm Model="@loginModel" OnInvalidSubmit="HandleLogin">
         <DataAnnotationsValidator />
@@ -29,6 +36,7 @@
 
     <div class="text-center">
         <p>Don't have an account? <NavLink href="/signup">Register</NavLink></p>
+        </div>
     </div>
 </div>
 
