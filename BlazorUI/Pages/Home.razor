@@ -1,5 +1,7 @@
 ﻿@page "/"
 @inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+
 
 <div class="banner-container">
     <img src="banner2.png" alt="Banner" class="banner-image" />
@@ -7,31 +9,40 @@
 </div>
 
 <div class="container">
-    <div class="login-container">
-        <h2>Login</h2>
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" @bind="username" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" @bind="password" class="form-control" />
-        </div>
-        <button class="btn btn-red" @onclick="Login">Login</button>
-        <button class="btn btn-black" @onclick="CreateAccount">Create Account</button>
-        
+
+        <div class="about-container">
+        <h2>About the Website</h2>
+        <p>Welcome to MD Election Home! This website is your one-stop destination for all election-related information in Maryland. 
+            Whether you're looking for representatives, district information, or polling places, we've got you covered. 
+            Our user-friendly interface makes it easy to navigate and find the information you need.</p>
     </div>
 
-    <div class="search-container">
+    <div class="login-about-container">
+        <div class="login-container">
+            <h2>Login</h2>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" @bind="username" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" @bind="password" class="form-control" />
+            </div>
+            <button class="btn btn-red" @onclick="Login">Login</button>
+            <button class="btn btn-black" @onclick="CreateAccount">Create Account</button>
+        </div>
+
         <div class="search-container">
             <div class="search-title">
                 <h2>Quick Search:</h2>
             </div>
-        <input type="text" placeholder="Search..." class="search-bar" title="Enter the Candidate's name for Representatives or your address for District and Polling Places" />
-        <button class="btn btn-red">Search<br />Representatives</button>
-        <button class="btn btn-yellow">Search<br />District</button>
-        <button class="btn btn-black">Search<br />Polling Places</button>
-    </div>
+            <div class="quick-search-content">
+                <input type="text" placeholder="Search..." class="search-bar" title="Enter the Candidate's name for Representatives or your address for District and Polling Places" />
+                <button class="btn btn-red">Search<br />Representatives</button>
+                <button class="btn btn-yellow">Search<br />District</button>
+                <button class="btn btn-black">Search<br />Polling Places</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -42,7 +53,6 @@
         max-width: 100vw;
         height: auto;
         overflow: hidden;
-        justify-content:stretch;
         margin-bottom: 40px;
     }
 
@@ -51,7 +61,6 @@
         height: auto;
         display: block;
         opacity: 0.3;
-     
     }
 
     .page-title {
@@ -66,26 +75,35 @@
 
     .container {
         display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        height: 100vh;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login-about-container {
+        display: flex;
+        justify-content: space-between;
+        width: 80%; 
+        margin-bottom: 20px;
     }
 
     .login-container {
-        width: 20%; 
+        width: calc(50% - 10px); 
         padding: 20px;
         border: 1px solid #ccc;
         border-radius: 8px;
-        justify-content:left;
     }
 
     .search-container {
-      
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        height: 100vh;
+        width: calc(50% - 10px); 
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+
+    .about-container {
+        width: 80%; 
+        padding: 20px;
+        margin-bottom: 8px;
     }
 
     .form-group {
@@ -97,17 +115,30 @@
         margin-top: 10px;
     }
 
-    .search-bar {
-        padding: 8px;
-        margin-right: 8px;
-    }
-
     .search-title {
         text-align: center;
         margin-bottom: 16px;
     }
 
+    .quick-search-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-bar {
+        padding: 8px;
+        margin-bottom: 8px;
+    }
+
+    .btn {
+        width: 100%; 
+        margin-bottom: 8px;
+    }
 </style>
+
+
+
 
 @code {
     private string username;
@@ -121,6 +152,6 @@
 
     private void CreateAccount()
     {
-
+        NavigationManager.NavigateTo("Signup");
     }
 }
