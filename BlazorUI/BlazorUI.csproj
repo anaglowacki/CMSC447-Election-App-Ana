@@ -12,4 +12,8 @@
     <Content Remove="wwwroot\css\styles.css" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ElectionAppLibrary\ElectionAppLibrary.csproj" />
+  </ItemGroup>
+
 </Project>
