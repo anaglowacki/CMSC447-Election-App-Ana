@@ -18,4 +18,8 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ElectionAppLibrary\ElectionAppLibrary.csproj" />
+  </ItemGroup>
+
 </Project>
