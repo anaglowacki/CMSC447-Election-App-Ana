@@ -4,7 +4,8 @@
     max-width: 100vw;
     height: auto;
     overflow: hidden;
-    margin-bottom: 20px;
+    justify-content: stretch;
+    margin-bottom: 40px;
 }
 
 .banner-image {
@@ -17,13 +18,12 @@
 ﻿
 
 .login-container {
-    width: 100%;
-    max-width: 400px;
-    margin: 40px auto; 
-    padding: 20px;
-    border-radius: 10px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-    background: #ffffff;
+    display: flex;
+    padding: 2%;
+    background-color: #ffd200;
+    align-items: flex-start;
+    height: 50vh;
+    border-radius: 5px;
 }
 .login-avatar {
     width: 100px;
@@ -36,7 +36,7 @@
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 }
 
 .form-control {
