@@ -6,4 +6,19 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="wwwroot\images\**" />
+    <Content Remove="wwwroot\images\**" />
+    <EmbeddedResource Remove="wwwroot\images\**" />
+    <None Remove="wwwroot\images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Pages\Home.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ElectionAppLibrary\ElectionAppLibrary.csproj" />
+  </ItemGroup>
+
 </Project>
