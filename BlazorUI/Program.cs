@@ -1,3 +1,4 @@
+using ElectionAppLibrary.DataAccess;
 using ElectionAppLibrary.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -14,6 +15,7 @@ namespace BlazorUI
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddSingleton<LoginService>();
+            builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
 			builder.Services.AddHttpClient("RepAddress", httpClient =>
             {
                 httpClient.BaseAddress = new Uri("https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyDRPOb2Wy4TIGZ2HcSuXLxxuIoNytPGIzE&address=");
