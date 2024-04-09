@@ -26,15 +26,32 @@
 else
 {
 	<div class="user-info" style="background-color: black">
-		<h2 class="user-info-text">Welcome back, Tester</h2>
+		<h2 class="user-info-text">Welcome back, @UserLogin.User.username</h2>
 		<div class="user-info-container" style="display: flex;">
 			<div class="user-email">
-				<p class="user-info-text">Email: @UserLogin.User.email</p>
-				<button type="button" class="btn btn-red" @onclick="changeEmail">Change</button>
+				@if (string.IsNullOrEmpty(@UserLogin.User.email))
+				{
+					<p class="user-info-text">Email: N/A</p>
+					<button type="button" class="btn btn-red" @onclick="changeEmail">Change</button>
+				}
+				else
+				{
+					<p class="user-info-text">Email: @UserLogin.User.email</p>
+					<button type="button" class="btn btn-red" @onclick="changeEmail">Change</button>
+				}
 			</div>
 			<div class="user-address">
-				<p class="user-info-text">Address: @UserLogin.User.address</p>
-				<button type="button" class="btn btn-red" @onclick="changeAddress">Change</button>
+				@if (string.IsNullOrEmpty(@UserLogin.User.address))
+				{
+					<p class="user-info-text">Address: N/A </p>
+					<button type="button" class="btn btn-red" @onclick="changeAddress">Change</button>
+				}
+				else
+				{
+					<p class="user-info-text">Address: @UserLogin.User.address</p>
+					<button type="button" class="btn btn-red" @onclick="changeAddress">Change</button>
+				}
+				
 			</div>
 		</div>
 	</div>
@@ -154,6 +171,6 @@ else
 
 	private async Task changeAddress()
 	{
-		//UserLogin.User.email ;
+		NavigationManager.NavigateTo("/FindMyDistrict");
 	}
 }

@@ -1,5 +1,11 @@
 ﻿@page "/Login"
+@using ElectionAppLibrary.DataAccess
+@using ElectionAppLibrary.Models
+@inject LoginService UserLogin
+@inject NavigationManager NavigationManager
 @inherits LayoutComponentBase
+
+@inject IUserData _db
 
 <PageTitle>Login/Set Up</PageTitle>
 <div class="login-container">
@@ -8,7 +14,7 @@
     </div>
 <h1>Login</h1>
 
-    <EditForm Model="@loginModel" OnInvalidSubmit="HandleLogin">
+    <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
@@ -26,7 +32,12 @@
         <br />
         <button type="submit" class="btn btn-primary">Login</button>
     </EditForm>
-
+    @if (!string.IsNullOrEmpty(loginModel.Username) && !string.IsNullOrEmpty(user.username))
+    {
+        <div class="alert alert-danger" role="alert">
+            Invalid username or password. Please try again.
+        </div>
+    }
     <div class="text-center">
         <p>Don't have an account? <a href="/Signup">Register</a></p>  
     </div>
@@ -34,10 +45,26 @@
 
 @code {
     private LoginModel loginModel = new LoginModel();
+    private UserModel user = new UserModel();
+    private bool loginSuccess = true;
 
-    
     private async Task HandleLogin()
     {
+        user.username = loginModel.Username;
+        user.password = loginModel.Password;
+
+        user = await _db.GetUser(user);
+
+        if (user != null)
+        {
+            loginSuccess = true;
+            UserLogin.User = user;
+            NavigationManager.NavigateTo("/UserProfile");
+        }
+        else
+        {
+            loginSuccess = false;
+        }
         /*
         var result = await _authenticationService.Login(loginModel);
 
@@ -46,7 +73,9 @@
             _navigationManager.NavigateTo("/");
         }
         */
+        user = new UserModel();
     }
+    
 
     public class LoginModel
     {
@@ -58,5 +87,11 @@
 }
 
 <style>
-
+    .login-avatar{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 30%;
+        width: 30%;
+    }
 </style>

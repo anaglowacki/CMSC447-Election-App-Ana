@@ -10,44 +10,58 @@ using Microsoft.Extensions.Configuration;
 
 namespace ElectionAppLibrary.DataAccess
 {
-	public interface ISqlDataAccess
-	{
-		string ConnectionStringName { get; set; }
 
-		Task<List<T>> LoadData<T, U>(string sql, U parameters);
-		Task SaveData<T>(string sql, T parameters);
-	}
+    public interface ISqlDataAccess
+    {
+        string ConnectionStringName { get; set; }
 
-	public class SqlDataAccess : ISqlDataAccess
-	{
-		private readonly IConfiguration _config;
+        Task<List<T>> LoadData<T, U>(string sql, U parameters);
+        Task<T> LoadDatum<T, U>(string sql, U parameters);
+        Task SaveData<T>(string sql, T parameters);
+    }
 
-		public string ConnectionStringName { get; set; } = "Default";
-		public SqlDataAccess(IConfiguration config)
-		{
-			_config = config;
-		}
+    public class SqlDataAccess : ISqlDataAccess
+    {
+        private readonly IConfiguration _config;
 
-		public async Task<List<T>> LoadData<T, U>(string sql, U parameters)
-		{
-			string connectionString = _config.GetConnectionString(ConnectionStringName);
+        public string ConnectionStringName { get; set; } = "Default";
+        public SqlDataAccess(IConfiguration config)
+        {
+            _config = config;
+        }
 
-			using (IDbConnection connection = new SqlConnection(connectionString))
-			{
-				var data = await connection.QueryAsync<T>(sql, parameters);
+        public async Task<List<T>> LoadData<T, U>(string sql, U parameters)
+        {
+            string connectionString = _config.GetConnectionString(ConnectionStringName);
 
-				return data.ToList();
-			}
-		}
+            using (IDbConnection connection = new SqlConnection(connectionString))
+            {
+                var data = await connection.QueryAsync<T>(sql, parameters);
 
-		public async Task SaveData<T>(string sql, T parameters)
-		{
-			string connectionString = _config.GetConnectionString(ConnectionStringName);
+                return data.ToList();
+            }
+        }
 
-			using (IDbConnection connection = new SqlConnection(connectionString))
-			{
-				await connection.ExecuteAsync(sql, parameters);
-			}
-		}
-	}
+        public async Task<T> LoadDatum<T, U>(string sql, U parameters)
+        {
+            string connectionString = _config.GetConnectionString(ConnectionStringName);
+
+            using (IDbConnection connection = new SqlConnection(connectionString))
+            {
+                var data = await connection.QueryFirstAsync<T>(sql, parameters);
+
+                return data;
+            }
+        }
+
+        public async Task SaveData<T>(string sql, T parameters)
+        {
+            string connectionString = _config.GetConnectionString(ConnectionStringName);
+
+            using (IDbConnection connection = new SqlConnection(connectionString))
+            {
+                await connection.ExecuteAsync(sql, parameters);
+            }
+        }
+    }
 }

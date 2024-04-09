@@ -65,6 +65,7 @@ public class Candidate
 	public string email { get; set; }
 	public string candidateUrl { get; set; }
 	public string phone { get; set; }
+	public string photoUrl {  get; set; }
 }
 
 public class State
