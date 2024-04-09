@@ -9,7 +9,7 @@
 	<img src="banner2.png" alt="Banner" class="banner-image" />
 	<h1 class="page-title"><b>My Profile</b></h1>
 </div>
-@if (UserLogin.User is null)
+@if (string.IsNullOrEmpty(UserLogin.User.username))
 {
 	<div class="user-info" style="background-color: black">
 		<h2 class="user-info-text">Welcome back, Tester</h2>

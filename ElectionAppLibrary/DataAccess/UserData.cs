@@ -10,8 +10,9 @@ namespace ElectionAppLibrary.DataAccess
 {
 	public interface IUserData
 	{
+		Task<UserModel> UserLogin(UserModel user);
 		Task<UserModel> GetUser(UserModel user);
-		Task InsertUser(UserModel user);
+        Task InsertUser(UserModel user);
 		Task UpdateAddress(UserModel user);
 		Task UpdateEmail(UserModel user);
 	}
@@ -25,13 +26,17 @@ namespace ElectionAppLibrary.DataAccess
 			_db = db;
 		}
 
-		public Task<UserModel> GetUser(UserModel user)
+		public Task<UserModel> UserLogin(UserModel user)
 		{
-			string sql = @"select * from dbo.app_user where username = '" + user.username + "';";
+			string sql = @"select * from dbo.app_user where username = '" + user.username + "' and password = '" + user.password + "';";
 			return _db.LoadDatum<UserModel, dynamic>(sql, new { });
 		}
 
-
+		public Task<UserModel> GetUser(UserModel user)
+		{
+			string sql = @"select * from dbo.app_user where username = '" + user.username + "';";
+            return _db.LoadDatum<UserModel, dynamic>(sql, new { });
+        }
 		public Task InsertUser(UserModel user)
 		{
 			string sql = @"insert into dbo.app_user (username, password, email, address) values (@username, @password, @email, @points);";

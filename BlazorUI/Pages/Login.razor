@@ -49,9 +49,10 @@
     private UserModel user = new UserModel();
     private int loginSuccess = 0;
 
+
     protected override async Task OnInitializedAsync()
     {
-        if (UserLogin.User != null)
+        if (UserLogin.User != null && !string.IsNullOrEmpty(UserLogin.User.username))
         {
             NavigationManager.NavigateTo("/UserProfile");
         }
@@ -62,7 +63,7 @@
         user.username = loginModel.Username;
         user.password = loginModel.Password;
 
-        user = await _db.GetUser(user);
+        user = await _db.UserLogin(user);
 
         if (user != null)
         {
