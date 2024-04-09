@@ -27,7 +27,7 @@ namespace ElectionAppLibrary.DataAccess
 
 		public Task<UserModel> GetUser(UserModel user)
 		{
-			string sql = "select * from dbo.app_user;";
+			string sql = @"select * from dbo.app_user where username = '" + user.username + "';";
 			return _db.LoadDatum<UserModel, dynamic>(sql, new { });
 		}
 

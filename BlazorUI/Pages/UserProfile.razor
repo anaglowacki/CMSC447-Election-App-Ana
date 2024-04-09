@@ -1,7 +1,9 @@
 ﻿@page "/UserProfile"
+@using ElectionAppLibrary.DataAccess
 @using ElectionAppLibrary.Models
 @inject NavigationManager NavigationManager
 @inject LoginService UserLogin
+@inject IUserData _db
 
 <div class="banner-container">
 	<img src="banner2.png" alt="Banner" class="banner-image" />
@@ -38,6 +40,16 @@ else
 				{
 					<p class="user-info-text">Email: @UserLogin.User.email</p>
 					<button type="button" class="btn btn-red" @onclick="changeEmail">Change</button>
+				}
+				@if (cEmail)
+				{
+					<EditForm Model="@u" OnValidSubmit="@UpdateUserEmail">
+						<DataAnnotationsValidator />
+						<ValidationSummary />
+
+						<InputText id="useremail" @bind-Value="u.email" />
+						<button type="submit" class="btn btn-red">Submit</button>
+					</EditForm>
 				}
 			</div>
 			<div class="user-address">
@@ -157,19 +169,30 @@ else
 @code {
 	//CandidateModel.contests
 	private List<Contest> usrCandidates;
+	private bool cEmail = false;
+	private UserModel u = new UserModel();
 
 	private void goToCandidates()
 	{
 		NavigationManager.NavigateTo("/Candidates");
 	}
 
-	private async Task changeEmail()
+	private void changeEmail()
 	{
-		//UserLogin.User.email ;
+		//UserLogin.User.email;
+		cEmail = !cEmail;
 
 	}
 
-	private async Task changeAddress()
+	private async Task UpdateUserEmail()
+	{
+		UserLogin.User.email = u.email;
+		await _db.UpdateEmail(UserLogin.User);
+		cEmail = !cEmail;
+		u = new UserModel();
+	}
+
+	private void changeAddress()
 	{
 		NavigationManager.NavigateTo("/FindMyDistrict");
 	}

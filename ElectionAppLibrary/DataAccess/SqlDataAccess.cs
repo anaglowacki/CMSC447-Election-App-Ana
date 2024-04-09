@@ -48,9 +48,16 @@ namespace ElectionAppLibrary.DataAccess
 
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
-                var data = await connection.QueryFirstAsync<T>(sql, parameters);
-
-                return data;
+                try
+                {
+                    var data = await connection.QueryFirstAsync<T>(sql, parameters);
+                    return data;
+                }
+                catch (Exception ex)
+                {
+                    return default;
+                }
+                
             }
         }
 

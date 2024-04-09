@@ -26,14 +26,15 @@
 
         <div class="form-group">
             <label for="password">Password</label>
-            <InputText id="password" class="form-control" @bind-Value="loginModel.Password" />
+            <InputText id="password" class="form-control" type="password" @bind-Value="loginModel.Password" />
             <ValidationMessage For="@(() => loginModel.Password)" />
         </div>
         <br />
         <button type="submit" class="btn btn-primary">Login</button>
     </EditForm>
-    @if (!string.IsNullOrEmpty(loginModel.Username) && !string.IsNullOrEmpty(user.username))
+    @if (loginSuccess == -1)
     {
+        <br />
         <div class="alert alert-danger" role="alert">
             Invalid username or password. Please try again.
         </div>
@@ -46,8 +47,16 @@
 @code {
     private LoginModel loginModel = new LoginModel();
     private UserModel user = new UserModel();
-    private bool loginSuccess = true;
+    private int loginSuccess = 0;
 
+    protected override async Task OnInitializedAsync()
+    {
+        if (UserLogin.User != null)
+        {
+            NavigationManager.NavigateTo("/UserProfile");
+        }
+    }
+    
     private async Task HandleLogin()
     {
         user.username = loginModel.Username;
@@ -57,13 +66,13 @@
 
         if (user != null)
         {
-            loginSuccess = true;
+            loginSuccess = 1;
             UserLogin.User = user;
             NavigationManager.NavigateTo("/UserProfile");
         }
         else
         {
-            loginSuccess = false;
+            loginSuccess = -1;
         }
         /*
         var result = await _authenticationService.Login(loginModel);
