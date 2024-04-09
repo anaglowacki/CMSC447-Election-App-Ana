@@ -1,5 +1,6 @@
 ﻿@page "/FindMyDistrict"
 @inherits LayoutComponentBase
+@using ElectionAppLibrary.Models
 
 <PageTitle>Find My District</PageTitle>
 
@@ -21,10 +22,12 @@
 			<p></p>
 			<InputNumber id=userZipCode @bind-Value=userInput.userZipCode />
 			<p></p>
-			<button type="button" class="btn btn-red">Submit</button>
+			<button type="submit" class="btn btn-red">Submit</button>
 		</EditForm>
 	</div>
 </div>
+
+
 <style>
 	.banner-container {
 		position: relative;
@@ -49,7 +52,7 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		color: black;
-		font-size: 5vmin;
+		font-size: 5vw;
 		z-index: 2;
 		text-align: center;
 	}
@@ -60,7 +63,7 @@
 		background-color: #ffd200;
 		align-items: flex-start;
 		height: 50vh;
-		border-radius: 5px;
+		border-radius: 10px;
 	}
 
 	.search-address{

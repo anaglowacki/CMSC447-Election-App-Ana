@@ -1,3 +1,5 @@
+using ElectionAppLibrary.DataAccess;
+using ElectionAppLibrary.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -12,8 +14,14 @@ namespace BlazorUI
             // Add services to the container.
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
+            builder.Services.AddSingleton<LoginService>();
+            builder.Services.AddSingleton<IUserData, UserData>();
+            builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+			builder.Services.AddTransient<IUserData, UserData>();
+			builder.Services.AddHttpClient();
 
-            var app = builder.Build();
+
+			var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

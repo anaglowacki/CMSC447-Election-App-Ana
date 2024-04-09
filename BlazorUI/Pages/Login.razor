@@ -1,5 +1,11 @@
 ﻿@page "/Login"
+@using ElectionAppLibrary.DataAccess
+@using ElectionAppLibrary.Models
+@inject LoginService UserLogin
+@inject NavigationManager NavigationManager
 @inherits LayoutComponentBase
+
+@inject IUserData _db
 
 <PageTitle>Login/Set Up</PageTitle>
 <div class="login-container">
@@ -8,7 +14,7 @@
     </div>
 <h1>Login</h1>
 
-    <EditForm Model="@loginModel" OnInvalidSubmit="HandleLogin">
+    <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
@@ -20,13 +26,19 @@
 
         <div class="form-group">
             <label for="password">Password</label>
-            <InputText id="password" class="form-control" @bind-Value="loginModel.Password" />
+            <InputText id="password" class="form-control" type="password" @bind-Value="loginModel.Password" />
             <ValidationMessage For="@(() => loginModel.Password)" />
         </div>
         <br />
         <button type="submit" class="btn btn-primary">Login</button>
     </EditForm>
-
+    @if (loginSuccess == -1)
+    {
+        <br />
+        <div class="alert alert-danger" role="alert">
+            Invalid username or password. Please try again.
+        </div>
+    }
     <div class="text-center">
         <p>Don't have an account? <a href="/Signup">Register</a></p>  
     </div>
@@ -34,10 +46,35 @@
 
 @code {
     private LoginModel loginModel = new LoginModel();
+    private UserModel user = new UserModel();
+    private int loginSuccess = 0;
 
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (UserLogin.User != null && !string.IsNullOrEmpty(UserLogin.User.username))
+        {
+            NavigationManager.NavigateTo("/UserProfile");
+        }
+    }
     
     private async Task HandleLogin()
     {
+        user.username = loginModel.Username;
+        user.password = loginModel.Password;
+
+        user = await _db.UserLogin(user);
+
+        if (user != null)
+        {
+            loginSuccess = 1;
+            UserLogin.User = user;
+            NavigationManager.NavigateTo("/UserProfile");
+        }
+        else
+        {
+            loginSuccess = -1;
+        }
         /*
         var result = await _authenticationService.Login(loginModel);
 
@@ -46,7 +83,9 @@
             _navigationManager.NavigateTo("/");
         }
         */
+        user = new UserModel();
     }
+    
 
     public class LoginModel
     {
@@ -58,5 +97,11 @@
 }
 
 <style>
-
+    .login-avatar{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 30%;
+        width: 30%;
+    }
 </style>
