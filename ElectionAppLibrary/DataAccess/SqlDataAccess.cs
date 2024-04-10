@@ -67,7 +67,14 @@ namespace ElectionAppLibrary.DataAccess
 
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
-                await connection.ExecuteAsync(sql, parameters);
+                try
+                {
+                    await connection.ExecuteAsync(sql, parameters);
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
         }
     }
