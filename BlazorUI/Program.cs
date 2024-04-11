@@ -1,3 +1,5 @@
+using ElectionAppLibrary.DataAccess;
+using ElectionAppLibrary.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -12,6 +14,16 @@ namespace BlazorUI
             // Add services to the container.
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
+            builder.Services.AddSingleton<LoginService>();
+            builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+			builder.Services.AddTransient<IUserData, UserData>();
+            builder.Services.AddTransient<IRepAPIRequests, RepAPIRequests>();
+            builder.Services.AddTransient<IRepData, RepData>();
+            builder.Services.AddHttpClient("RepByDiv", httpClient =>
+            {
+                httpClient.BaseAddress = new Uri("https://civicinfo.googleapis.com/civicinfo/v2/representatives/");
+            });
+
 
             var app = builder.Build();
 

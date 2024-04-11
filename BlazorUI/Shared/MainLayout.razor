@@ -1,4 +1,7 @@
-﻿@inherits LayoutComponentBase
+﻿@using ElectionAppLibrary.Models
+@inherits LayoutComponentBase
+@inject LoginService UserLogin
+@inject NavigationManager NavigationManager
 
 <PageTitle>PrestonViadoBlazorApp</PageTitle>
 
@@ -13,5 +16,16 @@
             @Body
         </article>
     </main>
+    <br/>
+    @if (UserLogin.User != null && !string.IsNullOrEmpty(UserLogin.User.username))
+    {
+        <button type="button" class="btn btn-black" @onclick="Logout">LOGOUT</button>
+    }
 </div>
 
+@code{
+    private void Logout(){
+        UserLogin.User = new UserModel();
+        NavigationManager.NavigateTo("/");
+    }
+}
