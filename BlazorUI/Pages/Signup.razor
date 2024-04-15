@@ -39,6 +39,10 @@
                 {
                     <p><strong style="color: red;">@confirmPasswordErrorMessage</strong></p>
                 }
+                @if (!string.IsNullOrEmpty(usernameErrorMessage))
+                {
+                    <p><strong style="color: red;">@usernameErrorMessage</strong></p>
+                }
             </div>
             <button type="submit" class="btn btn-red">Sign Up</button>
             <button type="button" class="btn btn-black" @onclick="Cancel">Cancel</button>
@@ -128,18 +132,20 @@
     {
         if (IsPasswordValid && IsConfirmPasswordValid)
         {
+            user.password = password;
 
             var existingUser = await _db.GetUser(user);
 
             if (existingUser != null)
             {
                 usernameErrorMessage = "Username already exists.";
-                return;
             }
+            else
+            {
+                await _db.InsertUser(user);
 
-            await _db.InsertUser(user);
-
-            NavigationManager.NavigateTo("Login");
+                NavigationManager.NavigateTo("Login");
+            }
         }
         else
         {
