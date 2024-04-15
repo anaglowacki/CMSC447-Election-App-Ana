@@ -1,6 +1,8 @@
 ﻿@page "/FindMyDistrict"
 @inherits LayoutComponentBase
 @using ElectionAppLibrary.Models
+@inject NavigationManager NavigationManager
+@inject SearchService MySearch
 
 <PageTitle>Find My District</PageTitle>
 
@@ -20,7 +22,7 @@
 			<p></p>
 			<h4>Zip Code*:</h4>
 			<p></p>
-			<InputNumber id=userZipCode @bind-Value=userInput.userZipCode />
+			<InputNumber id=userZipCode @bind-Value="userInput.userZipCode" Step="1" />
 			<p></p>
 			<button type="submit" class="btn btn-red">Submit</button>
 		</EditForm>
@@ -72,10 +74,20 @@
 </style>
 @code {
 	private UserAddress userInput = new UserAddress();
-	//Placeholder
+
+	protected override async Task OnInitializedAsync()
+	{
+		var uri = new Uri(NavigationManager.Uri);
+		var queryString = uri.Query;
+
+		if (queryString.Contains("fromHome=true"))
+		{
+			userInput = MySearch.UserAddress;
+        }
+    }
 	private async Task SearchLocation()
 	{
-		userInput = new UserAddress();
+		
 	}
 
 }

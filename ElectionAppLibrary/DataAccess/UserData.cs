@@ -39,7 +39,7 @@ namespace ElectionAppLibrary.DataAccess
         }
 		public Task InsertUser(UserModel user)
 		{
-			string sql = @"insert into dbo.app_user (username, password, email, address) values (@username, @password, @email, @points);";
+			string sql = @"insert into dbo.app_user (username, password, email) values (@username, @password, @email);";
 			return _db.SaveData(sql, user);
 		}
 

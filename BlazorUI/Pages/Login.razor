@@ -2,6 +2,7 @@
 @using ElectionAppLibrary.DataAccess
 @using ElectionAppLibrary.Models
 @inject LoginService UserLogin
+@inject LoginService Credentials
 @inject NavigationManager NavigationManager
 @inherits LayoutComponentBase
 
@@ -52,9 +53,28 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (UserLogin.User != null && !string.IsNullOrEmpty(UserLogin.User.username))
+        var uri = new Uri(NavigationManager.Uri);
+        var queryString = uri.Query;
+
+        if (queryString.Contains("fromHome=true"))
+        {
+
+            if (UserLogin.User != null && !string.IsNullOrEmpty(UserLogin.User.username) && !string.IsNullOrEmpty(UserLogin.User.password)
+            && UserLogin.User.isActive == false)
+            {
+
+                loginModel.Username = UserLogin.User.username;
+                loginModel.Password = UserLogin.User.password;
+
+                await HandleLogin();
+            }
+        }
+        else
+        {
+            if (UserLogin.User != null && !string.IsNullOrEmpty(UserLogin.User.username))
         {
             NavigationManager.NavigateTo("/UserProfile");
+        }
         }
     }
     
@@ -69,6 +89,7 @@
         {
             loginSuccess = 1;
             UserLogin.User = user;
+            UserLogin.User.isActive = true;
             NavigationManager.NavigateTo("/UserProfile");
         }
         else

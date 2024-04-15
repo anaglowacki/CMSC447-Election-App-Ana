@@ -15,6 +15,7 @@ namespace BlazorUI
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddSingleton<LoginService>();
+            builder.Services.AddSingleton<SearchService>();
             builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
 			builder.Services.AddTransient<IUserData, UserData>();
             builder.Services.AddTransient<IRepAPIRequests, RepAPIRequests>();
