@@ -1,5 +1,7 @@
 ﻿@page "/FindMyPollingPlace"
 @using ElectionAppLibrary.Models
+@inject NavigationManager NavigationManager
+@inject SearchService MySearch
 
 <PageTitle>Find My Polling Place</PageTitle>
 
@@ -74,6 +76,11 @@
 	private async Task SearchLocation()
 	{
 		userInput = new UserAddress();
+	}
+
+	protected override async Task OnInitializedAsync()
+	{
+
 	}
 
 }

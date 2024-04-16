@@ -1,11 +1,12 @@
 ﻿@page "/"
+@using ElectionAppLibrary.DataAccess
 @using ElectionAppLibrary.Models
 @inherits LayoutComponentBase
 @inject NavigationManager NavigationManager
+@inject LoginService UserLogin
+@inject SearchService MySearch
 
 <PageTitle>Home</PageTitle>
-
-
 
 <div class="banner-container">
     <img src="banner2.png" alt="Banner" class="banner-image" />
@@ -18,22 +19,36 @@
         <h2>About the Website</h2>
         <p>Welcome to MD Election Home! This website is your one-stop destination for all election-related information in Maryland. 
             Whether you're looking for representatives, district information, or polling places, we've got you covered. 
-            Our user-friendly interface makes it easy to navigate and find the information you need.</p>
+            Our user-friendly interface makes it easy to navigate and find the information you need.<br /><br /> <strong style="color: red">
+                Register to vote <a href="https://voterservices.elections.maryland.gov/OnlineVoterRegistration/InstructionsStep1" target="_blank">
+                    HERE
+                </a>
+            </strong>
+        </p>
     </div>
 
     <div class="login-about-container">
-        <div class="login-container">
-            <h2>Login</h2>
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" @bind="username" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" @bind="password" class="form-control" />
-            </div>
-            <button class="btn btn-red" @onclick="Login">Login</button>
-            <button class="btn btn-black" @onclick="CreateAccount">Create Account</button>
+      
+            <div class="login-container">
+            @if (UserLogin.User == null || UserLogin.User.isActive == false)
+            {
+                <h2>Login</h2>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" @bind="username" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" @bind="password" class="form-control" />
+                </div>
+                <button class="btn btn-red" @onclick="Login">Login</button>
+                <button class="btn btn-black" @onclick="CreateAccount">Create Account</button>
+            }
+            else
+            {
+                <h2>Welcome, @UserLogin.User.username!</h2>
+                <button class="btn btn-black" @onclick="goToProfile">Access my Account</button>
+            }
         </div>
 
         <div class="search-container">
@@ -41,10 +56,11 @@
                 <h2>Quick Search:</h2>
             </div>
             <div class="quick-search-content">
-                <input type="text" placeholder="Search..." class="search-bar" title="Enter the Candidate's name for Representatives or your address for District and Polling Places" />
+                <input type="text" placeholder="Search..." class="search-bar" @bind="searchData"
+                title="Enter the Candidate's name for Representatives or your address for District and Polling Places" />
                 <button class="btn btn-red">Search<br />Representatives</button>
-                <button class="btn btn-yellow">Search<br />District</button>
-                <button class="btn btn-black">Search<br />Polling Places</button>
+                <button class="btn btn-yellow" @onclick="searchDistrict">Search<br />District</button>
+                <button class="btn btn-black" @onclick="searchPollingPlace">Search<br />Polling Places</button>
             </div>
         </div>
     </div>
@@ -95,6 +111,7 @@
         padding: 20px;
         border: 1px solid #ccc;
         border-radius: 8px;
+        text-align: center;
     }
 
     .search-container {
@@ -147,15 +164,47 @@
 @code {
     private string username;
     private string password;
-    private string errorMessage;
+    private string searchData;
 
     private void Login()
     {
+        UserLogin.User = new UserModel { username = username, password = password };
 
+        NavigationManager.NavigateTo($"/login?fromHome=true");
     }
 
     private void CreateAccount()
     {
         NavigationManager.NavigateTo("Signup");
+    }
+
+    private void goToProfile()
+    {
+        NavigationManager.NavigateTo("UserProfile");
+    }
+
+    private void searchDistrict()
+    {
+        MySearch = new SearchService { SearchData = searchData };
+
+        try
+        {
+            MySearch.ParseAddress();
+
+            if (MySearch.UserAddress.userStreetAddress != null)
+            {
+                NavigationManager.NavigateTo($"FindMyDistrict?fromHome=true");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"An error occurred: {e.Message}");
+        }
+    }
+
+    private void searchPollingPlace()
+    {
+        MySearch = new SearchService { SearchData = searchData };
+        NavigationManager.NavigateTo("FindMyPollingPlace");
     }
 }

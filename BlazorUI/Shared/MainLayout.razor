@@ -17,7 +17,7 @@
         </article>
     </main>
     <br/>
-    @if (UserLogin.User != null && !string.IsNullOrEmpty(UserLogin.User.username))
+    @if (UserLogin.User != null && UserLogin.User.isActive == true)
     {
         <button type="button" class="btn btn-black" @onclick="Logout">LOGOUT</button>
     }
@@ -26,6 +26,7 @@
 @code{
     private void Logout(){
         UserLogin.User = new UserModel();
+        UserLogin.User.isActive = false;
         NavigationManager.NavigateTo("/");
     }
 }

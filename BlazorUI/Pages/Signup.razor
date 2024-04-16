@@ -1,7 +1,10 @@
 ﻿@page "/signup"
 @using System.Text.RegularExpressions
+@using ElectionAppLibrary.DataAccess
+@using ElectionAppLibrary.Models
 @inherits LayoutComponentBase
 @inject NavigationManager NavigationManager
+@inject IUserData _db
 
 
 
@@ -12,27 +15,34 @@
 
 <div class="container">
     <div class="signup-form">
-
-        <form>
+        <form @onsubmit="SignUp">
             <div class="form-group">
-                <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" class="form-control" />
+                <label for="userName">Username:</label>
+                <input type="text" id="userName" class="form-control" @bind="user.username" />
             </div>
             <div class="form-group">
                 <label for="email">Email Address:</label>
-                <input type="email" id="email" class="form-control" />
+                <input type="email" id="email" class="form-control" @bind="user.email" />
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" id="password" class="form-control" @bind="password" />
+                @if (!string.IsNullOrEmpty(passwordErrorMessage))
+                {
+                    <p><strong style="color: red;">@passwordErrorMessage</strong></p>
+                }
             </div>
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password:</label>
                 <input type="password" id="confirmPassword" class="form-control" @bind="confirmPassword" />
+                @if (!string.IsNullOrEmpty(confirmPasswordErrorMessage))
+                {
+                    <p><strong style="color: red;">@confirmPasswordErrorMessage</strong></p>
+                }
+                @if (!string.IsNullOrEmpty(usernameErrorMessage))
+                {
+                    <p><strong style="color: red;">@usernameErrorMessage</strong></p>
+                }
             </div>
             <button type="submit" class="btn btn-red">Sign Up</button>
             <button type="button" class="btn btn-black" @onclick="Cancel">Cancel</button>
@@ -46,7 +56,7 @@
     justify-content: center;
     align-items: flex-start;
     height: fit-content;
-    border: 2px solid rgba(0, 0, 0, 0.1); 
+    border: 2px solid rgba(0, 0, 0, 0.1);
     padding: 20px;
     width: fit-content;
 
@@ -92,11 +102,16 @@
 
 @code {
 
+    private UserModel user = new UserModel();
     private string password;
     private string confirmPassword;
     private string passwordErrorMessage;
+    private string confirmPasswordErrorMessage;
+    private string usernameErrorMessage;
 
     private bool IsPasswordValid => ValidatePassword(password);
+    private bool IsConfirmPasswordValid => password == confirmPassword;
+
 
     private bool ValidatePassword(string password)
     {
@@ -111,6 +126,31 @@
             passwordErrorMessage = null;
         }
         return isValid;
+    }
+
+    private async Task SignUp()
+    {
+        if (IsPasswordValid && IsConfirmPasswordValid)
+        {
+            user.password = password;
+
+            var existingUser = await _db.GetUser(user);
+
+            if (existingUser != null)
+            {
+                usernameErrorMessage = "Username already exists.";
+            }
+            else
+            {
+                await _db.InsertUser(user);
+
+                NavigationManager.NavigateTo("Login");
+            }
+        }
+        else
+        {
+            confirmPasswordErrorMessage = "Confirm password does not match.";
+        }
     }
 
     private void Cancel()
