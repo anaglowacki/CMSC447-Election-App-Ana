@@ -72,34 +72,30 @@
         user.username = loginModel.Username;
         user.password = loginModel.Password;
 
-        user = await _db.UserLogin(user);
+        var (loginResult, errorMessage) = await _db.UserLogin(user);
 
         if (user != null)
         {
             loginSuccess = 1;
-            UserLogin.User = user;
+            UserLogin.User = loginResult;   //Use the loginResult which is the userModel part of the tuple
             NavigationManager.NavigateTo("/UserProfile");
         }
         else
         {
             loginSuccess = -1;
         }
-        /*
-        var result = await _authenticationService.Login(loginModel);
-
-        if (result.Succeeded)
-        {
-            _navigationManager.NavigateTo("/");
-        }
-        */
         user = new UserModel();
     }
     
 
     public class LoginModel
     {
+        [Required]
+        [EmailAddress]
         public string Username { get; set; }
 
+        [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 
