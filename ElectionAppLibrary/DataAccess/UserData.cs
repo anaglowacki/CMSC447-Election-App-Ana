@@ -37,11 +37,11 @@ namespace ElectionAppLibrary.DataAccess
             string sql = @"select * from dbo.app_user where username = '" + user.username + "';";
             return _db.LoadDatum<UserModel, dynamic>(sql, new { });
         }
-        public Task InsertUser(UserModel user)
-        {
-            string sql = @"insert into dbo.app_user (username, password, email) values (@username, @password, @email);";
-            return _db.SaveData(sql, user);
-        }
+		public Task InsertUser(UserModel user)
+		{
+			string sql = @"insert into dbo.app_user (username, password, email) values (@username, @password, @email);";
+			return _db.SaveData(sql, user);
+		}
 
         public Task UpdateEmail(UserModel user)
         {

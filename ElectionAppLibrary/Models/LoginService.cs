@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace ElectionAppLibrary.Models
 {
-
 		public class LoginService
 	{
 		public UserModel User { get; set; }
-	}
+    }
 }
 
 

@@ -15,5 +15,11 @@ namespace ElectionAppLibrary.Models
 		[EmailAddress(ErrorMessage = "Characters are not allowed.")]
 		public string? email { get; set; }
 		public string? address { get; set; }
-	}
+		public bool? isActive { get; set; }
+
+        public UserModel()
+        {
+            isActive = false;
+        }
+    }
 }
