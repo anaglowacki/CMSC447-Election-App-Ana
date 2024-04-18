@@ -1,26 +1,20 @@
+﻿
 ﻿@page "/Login"
 @using ElectionAppLibrary.DataAccess
 @using ElectionAppLibrary.Models
 @inject LoginService UserLogin
+@inject LoginService Credentials
 @inject NavigationManager NavigationManager
 @inherits LayoutComponentBase
 
 @inject IUserData _db
 
 <PageTitle>Login/Set Up</PageTitle>
-
-
-<div class="banner-container">
-    <img src="banner2.png" alt="Banner" class="banner-image" />
-    <h1 class="page-title"><b>Welcome Come Back</b></h1>
-</div>
-
-
 <div class="login-container">
     <div class="login-form">
         <img src="/MarylandInfoLogo.png" alt="Login Avatar" class="login-avatar" />
-    
-    <h1>Login</h1>
+    </div>
+<h1>Login</h1>
 
     <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
         <DataAnnotationsValidator />
@@ -48,8 +42,7 @@
         </div>
     }
     <div class="text-center">
-        <p>Don't have an account? <NavLink href="/signup">Register</NavLink></p>
-        </div>
+        <p>Don't have an account? <a href="/Signup">Register</a></p>  
     </div>
 </div>
 
@@ -61,9 +54,28 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (UserLogin.User != null && !string.IsNullOrEmpty(UserLogin.User.username))
+        var uri = new Uri(NavigationManager.Uri);
+        var queryString = uri.Query;
+
+        if (queryString.Contains("fromHome=true"))
+        {
+
+            if (UserLogin.User != null && !string.IsNullOrEmpty(UserLogin.User.username) && !string.IsNullOrEmpty(UserLogin.User.password)
+            && UserLogin.User.isActive == false)
+            {
+
+                loginModel.Username = UserLogin.User.username;
+                loginModel.Password = UserLogin.User.password;
+
+                await HandleLogin();
+            }
+        }
+        else
+        {
+            if (UserLogin.User != null && !string.IsNullOrEmpty(UserLogin.User.username))
         {
             NavigationManager.NavigateTo("/UserProfile");
+        }
         }
     }
     
@@ -72,30 +84,35 @@
         user.username = loginModel.Username;
         user.password = loginModel.Password;
 
-        var (loginResult, errorMessage) = await _db.UserLogin(user);
+        user = await _db.UserLogin(user);
 
         if (user != null)
         {
             loginSuccess = 1;
-            UserLogin.User = loginResult;   //Use the loginResult which is the userModel part of the tuple
+            UserLogin.User = user;
+            UserLogin.User.isActive = true;
             NavigationManager.NavigateTo("/UserProfile");
         }
         else
         {
             loginSuccess = -1;
         }
+        /*
+        var result = await _authenticationService.Login(loginModel);
+
+        if (result.Succeeded)
+        {
+            _navigationManager.NavigateTo("/");
+        }
+        */
         user = new UserModel();
     }
     
 
     public class LoginModel
     {
-        [Required]
-        [EmailAddress]
         public string Username { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 
