@@ -15,6 +15,7 @@ namespace ElectionAppLibrary.DataAccess
         Task InsertUser(UserModel user);
 		Task UpdateAddress(UserModel user);
 		Task UpdateEmail(UserModel user);
+		Task DeleteAccount(UserModel user);
 	}
 
 	public class UserData : IUserData
@@ -57,5 +58,11 @@ namespace ElectionAppLibrary.DataAccess
 			return _db.SaveData(sql, user);
 		}
 
+		public Task DeleteAccount(UserModel user)
+		{
+			string sql = @"delete from dbo.app_user where username=@username";
+
+			return _db.SaveData(sql, user);
+		}
 	}
 }
