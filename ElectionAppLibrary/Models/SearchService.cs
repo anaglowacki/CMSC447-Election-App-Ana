@@ -34,17 +34,17 @@ namespace ElectionAppLibrary.Models
 					}
 					else
 					{
-						throw new ArgumentException("Invalid zip code format");
+						//throw new ArgumentException("Invalid zip code format");
 					}
 				}
 				else
 				{
-					throw new ArgumentException("Invalid address format");
+					//throw new ArgumentException("Invalid address format");
 				}
 			}
 			else
 			{
-				throw new ArgumentNullException(nameof(SearchData), "Search data cannot be null or empty");
+				//throw new ArgumentNullException(nameof(SearchData), "Search data cannot be null or empty");
 			}
 		}
 	}

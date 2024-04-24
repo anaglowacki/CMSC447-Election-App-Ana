@@ -27,6 +27,6 @@
     private void Logout(){
         UserLogin.User = new UserModel();
         UserLogin.User.isActive = false;
-        NavigationManager.NavigateTo("/");
+        NavigationManager.NavigateTo("/", forceLoad: true);
     }
 }
