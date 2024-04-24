@@ -11,3 +11,5 @@ namespace ElectionAppLibrary.Models
 		public UserModel User { get; set; }
     }
 }
+
+
