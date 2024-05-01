@@ -1,9 +1,61 @@
 ﻿@page "/Candidates"
+@inherits LayoutComponentBase
+@using ElectionAppLibrary.Models
+@inject NavigationManager NavigationManager
+@inject SearchService MySearch
 
 <PageTitle>Candidates</PageTitle>
 
 <h1>Candidates</h1>
 
-@code {
+<div class="container">
+	<div class="search-address">
+		<h4>Street Adress*:</h4>
+		<EditForm Model="@userInput" OnValidSubmit="@SearchLocation">
+			<DataAnnotationsValidator />
+			<ValidationSummary />
 
+			<InputText id="userStreetAddress" @bind-Value="userInput.userStreetAddress" />
+			<p></p>
+			<h4>Zip Code*:</h4>
+			<p></p>
+			<InputNumber id=userZipCode @bind-Value="userInput.userZipCode" Step="1" />
+			<p></p>
+			<button type="submit" class="btn btn-red">Submit</button>
+		</EditForm>
+	</div>
+</div>
+
+<style>
+
+	.container {
+		display: flex;
+		padding: 2%;
+		background-color: #ffd200;
+		align-items: flex-start;
+		height: 50vh;
+		border-radius: 10px;
+	}
+
+	.search-address {
+	}
+</style>
+
+@code {
+	private UserAddress userInput = new UserAddress();
+
+	protected override async Task OnInitializedAsync()
+	{
+		var uri = new Uri(NavigationManager.Uri);
+		var queryString = uri.Query;
+
+		if (queryString.Contains("fromHome=true"))
+		{
+			userInput = MySearch.UserAddress;
+		}
+	}
+	private async Task SearchLocation()
+	{
+
+	}
 }

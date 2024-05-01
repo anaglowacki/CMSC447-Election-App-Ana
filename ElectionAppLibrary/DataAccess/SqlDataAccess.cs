@@ -5,8 +5,13 @@ using System.Data.SqlClient; // Library to create the connection between C# and 
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper; // an ORM (Object Relational Mapper) library that takes data from the database and converts it into C# objects.
 using Microsoft.Extensions.Configuration; // Library to read configuration settings from C# apps. 
+using Dapper;
+/*
+ * Dapper is an ORM (Object Relational Mapper) library that takes data from the database and converts it into C# objects.
+ * Dapper also allows the creation of custom SQL statements from C# to SQL Server
+ */
+
 
 namespace ElectionAppLibrary.DataAccess
 {
@@ -55,7 +60,7 @@ namespace ElectionAppLibrary.DataAccess
              * Within the 'T' model/class, all attributes in a row (Ex. Id, FirstName, LastName) are stored
              * 
              * - "QueryAsync" is from the "Dapper" NuGet Package. 
-             * This method creates and executes a query from a SQL statement made in C#, called "sql," along with it's "parameters" to be executed in C#
+             * This method creates and executes a query from a SQL statement made in C#, called "sql," along with its "parameters"
              * 
              */
             using (IDbConnection connection = new SqlConnection(connectionString)) // connect to the database through connection string

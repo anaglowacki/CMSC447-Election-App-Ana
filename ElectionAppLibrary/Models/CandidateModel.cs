@@ -65,7 +65,10 @@ public class Candidate
 	public string email { get; set; }
 	public string candidateUrl { get; set; }
 	public string phone { get; set; }
-	public string photoUrl {  get; set; }
+	public string website {  get; set; }
+	public string facebook { get; set; }
+	public string twitter { get; set; }
+	public string other { get; set; }
 }
 
 public class State
