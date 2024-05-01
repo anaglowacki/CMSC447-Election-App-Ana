@@ -2,31 +2,46 @@
 @inherits LayoutComponentBase
 @inject LoginService UserLogin
 @inject NavigationManager NavigationManager
-
 <PageTitle>PrestonViadoBlazorApp</PageTitle>
-
 <div class="page">
     <div class="sidebar" style="background-image:none;background-color:dimgrey">
         <NavMenu />
     </div>
-
     <main>
-
         <article class="content px-4">
             @Body
         </article>
     </main>
-    <br/>
     @if (UserLogin.User != null && UserLogin.User.isActive == true)
     {
         <button type="button" class="btn btn-black" @onclick="Logout">LOGOUT</button>
     }
+    <button type="button" class="popup-button" @onclick="ShowPopup">Election<br />Laws</button>
+    <div class="popup" style="display: @popupDisplay">
+        <div class="popup-content">
+            <span class="close" @onclick="HidePopup">&times;</span>
+            <h3>Voting Laws and Rules</h3>
+            <p>1. Must be 18 or older.</p>
+            <p>2. Must be a United States citizen.</P>
+            <p>3. Must be registered to vote.</p>
+        </div>
+    </div>
 </div>
-
-@code{
-    private void Logout(){
+@code {
+    private string popupDisplay = "none";
+    private void ShowPopup()
+    {
+        popupDisplay = "block";
+    }
+    private void HidePopup()
+    {
+        popupDisplay = "none";
+    }
+    private void Logout()
+    {
         UserLogin.User = new UserModel();
         UserLogin.User.isActive = false;
         NavigationManager.NavigateTo("/", forceLoad: true);
     }
 }
+
