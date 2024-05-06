@@ -27,18 +27,30 @@
 			<button type="submit" class="btn btn-red">Submit</button>
 		</EditForm>
 	</div>
+	<div>
+		<iframe width="600"
+				height="450"
+				style="border:0"
+				loading="lazy"
+				allowfullscreen
+				referrerpolicy="no-referrer-when-downgrade"
+				src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDRPOb2Wy4TIGZ2HcSuXLxxuIoNytPGIzE&q=Space+Needle,Seattle+WA">
+		</iframe>
+	</div>
 </div>
 <style>
 
 	.container {
 		display: flex;
+		flex-flow: row wrap;
 		padding: 2%;
 		background-color: #ffd200;
 		align-items: flex-start;
-		height: 50vh;
 		border-radius: 10px;
 	}
-
+	.container > div {
+		margin: auto;
+	}
 	.search-address {
 	}
 
