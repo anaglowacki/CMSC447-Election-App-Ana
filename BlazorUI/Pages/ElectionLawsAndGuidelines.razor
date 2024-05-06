@@ -1,9 +1,42 @@
 ﻿@page "/ElectionLawsAndGuidelines"
-
 <PageTitle>Election Laws and Guidelines</PageTitle>
+<div class="frame">
+    <div class="container">
+        <div class="voting-laws">
+            <h3>Voting Laws and Rules</h3>
+            <p>1. Must be 18 or older.</p>
+            <p>2. Must be registered to vote.</p>
+            <p>3. Must be a United States citizens.</p>
+            <p>4. Maryland residents must register to vote at least 21 days before an election.</p>
+            <p>5. Must be residents of Maryland and provide a Maryland residential address to register. </p>
+            <p>6. While identification is not required, it may be requested if you are voting for the first time.</p>
+            <p>7. Maryland provides language assistance to voters who speak languages other than English.</p>
+            <p>8. Early voting is allowed typically starting 10 days before Election Day and ending three days before. </p>
+            <p>9. Registered voters are allowed to request an absentee ballot if they are unable to vote in person on Election Day.</p>
+        </div>
+    </div>
+</div>
+<style>
+    .frame {
+        position: relative;
+        width: calc(100% - 40px); 
+        height: calc(100vh - 40px); 
+        background-image: linear-gradient(45deg, red 33.33%, yellow 33.33%, yellow 66.67%, black 66.67%);
+        overflow: hidden;
+        margin: auto; 
+        padding: 20px;
+    }
+    .container {
+        background-color: white; 
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px; 
+    }
+    .voting-laws {
+        text-align: center;
+    }
+</style>
 
-<h1>Election Laws and Guidelines</h1>
-
-@code {
-
-}
