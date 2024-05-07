@@ -10,7 +10,7 @@ namespace BlazorUI
 	public class UserAddress
 	{
 		[Required]
-		[RegularExpression(@"^[a-zA-Z''-'\s\d]{1,100}$",
+		[RegularExpression(@"^[a-zA-Z'','\s\d]{1,100}$",
 		 ErrorMessage = "Characters are not allowed.")]
 		public string userStreetAddress { get; set; }
 

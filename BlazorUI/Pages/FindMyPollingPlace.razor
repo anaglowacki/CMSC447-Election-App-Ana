@@ -1,7 +1,11 @@
 ﻿@page "/FindMyPollingPlace"
 @using ElectionAppLibrary.Models
+@using ElectionAppLibrary.DataAccess
+@inject LoginService UserLogin
 @inject NavigationManager NavigationManager
 @inject SearchService MySearch
+@inject IVoterInfoAPI info
+@inject IUserData _db
 
 <PageTitle>Find My Polling Place</PageTitle>
 
@@ -26,6 +30,11 @@
 			<p></p>
 			<button type="submit" class="btn btn-red">Submit</button>
 		</EditForm>
+		@if (UserLogin.User != null && !string.IsNullOrEmpty(UserLogin.User.username))
+		{
+			<br />
+			<button type="button" class="btn btn-red" @onclick="saveInfo">Save Info</button>
+		}
 	</div>
 	<div>
 		<iframe width="600"
@@ -52,15 +61,30 @@
 		margin: auto;
 	}
 	.search-address {
+		margin: auto;
 	}
 
 </style>
 @code {
 	private UserAddress userInput = new UserAddress();
+	private string? address;
+	private CandidateModel? candidate;
 	//Placeholder
 	private async Task SearchLocation()
 	{
-		userInput = new UserAddress();
+		address = $"{userInput.userStreetAddress}, {userInput.userZipCode}";
+		candidate = await info.getVoterInfo(address);
+
+	}
+
+	private async void saveInfo()
+	{
+		if (String.IsNullOrEmpty(address))
+		{
+			return;
+		}
+		UserLogin.User.address = address;
+		await _db.UpdateAddress(UserLogin.User);
 	}
 
 	protected override async Task OnInitializedAsync()
