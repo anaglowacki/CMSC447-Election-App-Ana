@@ -9,8 +9,7 @@ main {
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #381edf 70%); 
-
+    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #381edf 70%);
 }
 
 .top-row {
@@ -46,26 +45,91 @@ main {
     }
 }
 
+.popup {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1000;
+    max-width: 300px;
+}
+
+    .popup .close {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+.popup-button {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 1000;
+    padding: 0;
+    text-align: center;
+    line-height: 1.4;
+}
 /*@media (min-width: 641px) {
     .page {
         flex-direction: row;
     }
-
     .sidebar {
         width: 250px;
         height: 100vh;
         position: sticky;
         top: 0;
     }
-
     .top-row {
         position: sticky;
         top: 0;
         z-index: 1;
     }
-
     .top-row, article {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }*/
 /*}*/
+
+/* MainLayout.razor.css */
+
+@media (max-width: 768px) {
+    .top-row {
+        height: auto; /* Make top row adjust in height automatically */
+        padding: 0.5rem; /* Reduce padding to save space */
+    }
+
+    .sidebar {
+        display: none; /* Optionally hide sidebar on small devices */
+    }
+}
+
+.popup-button {
+    bottom: 20px; /* Adjust button position to bottom on mobile */
+    right: 20px;
+    width: 60px; /* Make the button smaller */
+    height: 60px;
+    font-size: 12px; /* Adjust font size for the button text */
+}
+
+@media (max-width: 768px) {
+    .popup {
+        width: 90%; /* Make popup take more screen on small devices */
+        left: 5%; /* Center popup */
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}

@@ -2,6 +2,7 @@
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
 }
 
 h1:focus {
@@ -113,3 +114,47 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+/* Existing styles for .btn */
+.btn {
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .btn {
+        font-size: 14px; /* Smaller font size for smaller devices */
+        padding: 10px 20px; /* Larger padding for easier touch */
+    }
+}
+
+/* Reduce margin and padding in search boxes on smaller screens */
+@media (max-width: 768px) {
+    .search-box {
+        padding: 6px;
+        margin-right: 4px; /* Less margin to save space */
+    }
+}
+
+/* Styles for tablets */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .content {
+        padding-top: 50px;
+    }
+}
+
+/* Styles for mobile phones */
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+
+    .content {
+        padding-top: 40px;
+    }
+}
+
