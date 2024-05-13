@@ -30,7 +30,7 @@
 			<p></p>
 			<button type="submit" class="btn btn-red">Submit</button>
 		</EditForm>
-		@if (UserLogin.User != null && !string.IsNullOrEmpty(UserLogin.User.username))
+		@if (UserLogin.User != null && UserLogin.User.isActive == true)
 		{
 			<br />
 			<button type="button" class="btn btn-red" @onclick="saveInfo">Save Info</button>
@@ -43,7 +43,7 @@
 				loading="lazy"
 				allowfullscreen
 				referrerpolicy="no-referrer-when-downgrade"
-				src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDRPOb2Wy4TIGZ2HcSuXLxxuIoNytPGIzE&q=Space+Needle,Seattle+WA">
+				src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDRPOb2Wy4TIGZ2HcSuXLxxuIoNytPGIzE&q=@location">
 		</iframe>
 	</div>
 </div>
@@ -68,28 +68,57 @@
 @code {
 	private UserAddress userInput = new UserAddress();
 	private string? address;
+	private string location;
 	private CandidateModel? candidate;
 	//Placeholder
 	private async Task SearchLocation()
 	{
 		address = $"{userInput.userStreetAddress}, {userInput.userZipCode}";
 		candidate = await info.getVoterInfo(address);
+		if (candidate != null)
+		{
+			location = candidate.pollingLocations[0].address.locationName
+			+ "+" + candidate.pollingLocations[0].address.line1
+			+ "+" + candidate.pollingLocations[0].address.city
+			+ "+" + candidate.pollingLocations[0].address.state
+			+ "+" + candidate.pollingLocations[0].address.zip;
+
+			location = location.Replace(" ", "+");
+			StateHasChanged();
+		}
 
 	}
 
 	private async void saveInfo()
 	{
-		if (String.IsNullOrEmpty(address))
+		if (String.Compare(location, "Maryland") == 0)
 		{
 			return;
 		}
-		UserLogin.User.address = address;
-		await _db.UpdateAddress(UserLogin.User);
+		if (candidate != null)
+		{
+			UserLogin.User.address = candidate.pollingLocations[0].address.locationName
+			+ " - " + candidate.pollingLocations[0].address.line1
+			+ ", " + candidate.pollingLocations[0].address.city
+			+ ", " + candidate.pollingLocations[0].address.state
+			+ ", " + candidate.pollingLocations[0].address.zip;
+			await _db.UpdateAddress(UserLogin.User);
+		}
 	}
 
 	protected override async Task OnInitializedAsync()
 	{
-
+		if (UserLogin.User != null && UserLogin.User.isActive == true && !String.IsNullOrEmpty(UserLogin.User.address))
+		{
+			location = UserLogin.User.address;
+			location = location.Replace(" - ", "+");
+			location = location.Replace(" ", "+");
+		}
+		else
+		{
+			location = "Maryland";
+		}
+		
 	}
 
 }
