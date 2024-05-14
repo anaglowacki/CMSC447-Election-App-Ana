@@ -20,9 +20,14 @@ namespace BlazorUI
 			builder.Services.AddTransient<IUserData, UserData>();
             builder.Services.AddTransient<IRepAPIRequests, RepAPIRequests>();
             builder.Services.AddTransient<IRepData, RepData>();
-            builder.Services.AddHttpClient("RepByDiv", httpClient =>
+			builder.Services.AddTransient<IVoterInfoAPI, VoterInfoAPI>();
+			builder.Services.AddHttpClient("RepByDiv", httpClient =>
             {
                 httpClient.BaseAddress = new Uri("https://civicinfo.googleapis.com/civicinfo/v2/representatives/");
+            });
+            builder.Services.AddHttpClient("VoterInfo", httpClient =>
+            {
+                httpClient.BaseAddress = new Uri("https://civicinfo.googleapis.com/civicinfo/v2/voterinfo");
             });
 
 
