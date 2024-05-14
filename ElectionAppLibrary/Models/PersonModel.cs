@@ -8,6 +8,7 @@ namespace ElectionAppLibrary.Models
 {
      public class PersonModel
     {
+        // Preston Viado made this
         public string Name { get; set; }
         public int Age { get; set; }
     }
