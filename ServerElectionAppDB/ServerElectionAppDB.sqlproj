@@ -58,12 +58,17 @@
     <Folder Include="Properties" />
     <Folder Include="dbo" />
     <Folder Include="dbo\Tables" />
+    <Folder Include="dbo\PostPublishScripts" />
+    <Folder Include="PublishLocations" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\app_user.sql" />
     <Build Include="dbo\Tables\representatives.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="LocalElectionAppDB.publish.xml" />
+    <None Include="PublishLocations\LocalElectionAppDB.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="dbo\PostPublishScripts\Script.representatives.sql" />
   </ItemGroup>
 </Project>
