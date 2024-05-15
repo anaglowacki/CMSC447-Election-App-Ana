@@ -4,6 +4,13 @@
 @inject IRepAPIRequests representative
 @inject IRepData _db
 
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @errorMessage
+    </div>
+}
+
 <div class="banner-container">
     <img src="banner2.png" alt="Banner" class="banner-image" />
     <h1 class="page-title"><b>My Representatives</b></h1>
@@ -145,6 +152,7 @@
 
 
 @code {
+    private string errorMessage = "";
     private RepresentativeModel? rep;
     private List<RepModelDB> displayReps = new List<RepModelDB>();
     private List<RepModelDB> reps = new List<RepModelDB>();
@@ -153,24 +161,32 @@
     protected override async Task OnInitializedAsync()
     {
         displayReps = await _db.GetReps();
+        // Optionally, call GetReps() to get the latest data from the API
+        GetReps();
     }
 
     //Here as an example; it will only be used by site admins if reps need to be changed.
     private async void GetReps()
     {
+        errorMessage = "";
         string ocdId = "ocd-division/country:us/state:md";
-        rep = await representative.RepOnGet(ocdId);
+        var apiResponse = await representative.RepOnGet(ocdId);
 
-        if (rep != null)
+        if (apiResponse.Success && apiResponse.Data != null)
         {
-            reps = r.ConvertRep(rep);
+            reps = r.ConvertRep(apiResponse.Data);
 
             foreach (RepModelDB repModelDB in reps)
             {
                 await _db.InsertRep(repModelDB);
             }
 
-            reps = new List<RepModelDB>();
+            // Update the displayReps list
+            displayReps = await _db.GetReps();
+        }
+        else
+        {
+            errorMessage = apiResponse.ErrorMessage ?? "No data available at the moment, please try again in a few minutes.";
         }
     }
 }

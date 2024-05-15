@@ -1,9 +1,87 @@
 ﻿@page "/ElectionUpdates"
+@using ElectionAppLibrary.Models
+@using System.Xml
+@using System.Xml.Linq
 
 <PageTitle>Election Updates</PageTitle>
 
-<h1>Election Updates</h1>
+<div class="banner-container">
+	<img src="banner2.png" alt="Banner" class="banner-image" />
+	<h1 class="page-title"><b>Important Election Dates</b></h1>
+</div>
+
+<div>
+	<div class="container" style="background-color: black;">
+		<h3 style="color: white">General Election</h3>
+		@for (int i = 0; i < gen.Count(); i += 2)
+		{
+			<b style="color: white">@gen.ElementAt(i) @gen.ElementAt(i+1)</b>
+
+			<br />
+		}
+	</div>
+	<div class="container" style="background-color: #e21833">
+		<h3>Presidential Primary</h3>
+		@for (int i = 0; i < pres.Count(); i += 2)
+		{
+			<b>@pres.ElementAt(i) @pres.ElementAt(i+1)</b>
+
+			<br />
+		}
+	</div>
+	<div class="container" style="background-color: #ffd200">
+		<h3>State Primary</h3>
+		@for (int i = 0; i < state.Count(); i += 2)
+		{
+			<b>@state.ElementAt(i) @state.ElementAt(i+1)</b>
+
+			<br />
+		}
+	</div>
+</div>
+
+<style>
+	.container {
+		margin:auto;
+		padding: 2%;
+	}
+</style>
+
 
 @code {
+	XmlTextReader getDates = new XmlTextReader("https://www.fvap.gov/xml-api/Maryland/deadline-dates.xml");
+	List<String> read = new List<String>(), gen = new List<String>(), pres = new List<String>(), state = new List<String>();
+
+	protected override async Task OnInitializedAsync()
+	{
+		while(getDates.Read())
+		{
+			switch(getDates.NodeType)
+			{
+				case XmlNodeType.Text:
+					read.Add(getDates.Value);
+					break;
+			}
+		}
+		for (int i = read.Count() - 1; i > 0; i -= 4)
+		{
+			if (read.ElementAt(i).StartsWith("General Election"))
+			{
+				gen.Add(read.ElementAt(i - 2));
+				gen.Add(read.ElementAt(i - 3).Replace("T", ", "));
+			}
+			if (read.ElementAt(i).StartsWith("State Primary"))
+			{
+				state.Add(read.ElementAt(i - 2));
+				state.Add(read.ElementAt(i - 3).Replace("T", ", "));
+			}
+			if (read.ElementAt(i).StartsWith("Presidential Primary"))
+			{
+				pres.Add(read.ElementAt(i - 2));
+				pres.Add(read.ElementAt(i - 3).Replace("T", ", "));
+			}
+		}
+
+	}
 
 }

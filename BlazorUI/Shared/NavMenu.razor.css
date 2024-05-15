@@ -50,6 +50,30 @@
             color: white;
         }
 
+/* NavMenu.razor.css */
+
+@media (max-width: 768px) {
+    .navbar-toggler {
+        display: inline-block; /* Make sure toggler is always displayed on small screens */
+    }
+
+    .nav-item {
+        font-size: 1rem; /* Increase font size for better readability */
+        padding: 0.75rem 1rem; /* Increase padding for easier tap targets */
+    }
+}
+
+.navbar-brand, .oi {
+    font-size: 1.4rem; /* Adjust logo and icons size for better visibility */
+}
+
+@media (max-width: 768px) {
+    .top-row, .navbar-brand, .oi, .nav-item {
+        text-align: center; /* Center align items for a cleaner mobile appearance */
+    }
+}
+
+
 /*@media (min-width: 641px) {
     .navbar-toggler {
         display: none;
@@ -64,5 +88,5 @@
          Allow sidebar to scroll for tall menus 
         height: calc(100vh - 3.5rem);
         overflow-y: auto;
-    }*/
+    }
 /*}*/
