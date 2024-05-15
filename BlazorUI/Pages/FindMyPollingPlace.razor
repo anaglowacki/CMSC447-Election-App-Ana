@@ -75,7 +75,7 @@
 	{
 		address = $"{userInput.userStreetAddress}, {userInput.userZipCode}";
 		candidate = await info.getVoterInfo(address);
-		if (candidate != null)
+		if (candidate != null && candidate.pollingLocations != null)
 		{
 			location = candidate.pollingLocations[0].address.locationName
 			+ "+" + candidate.pollingLocations[0].address.line1
