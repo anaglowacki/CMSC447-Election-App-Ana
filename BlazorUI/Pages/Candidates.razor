@@ -1,9 +1,179 @@
 ﻿@page "/Candidates"
+@inherits LayoutComponentBase
+@using ElectionAppLibrary.Models
+@using ElectionAppLibrary.DataAccess
+@inject NavigationManager NavigationManager
+@inject SearchService MySearch
+@inject IVoterInfoAPI info
+@inject IUserData _db
+@inject LoginService UserLogin
 
 <PageTitle>Candidates</PageTitle>
 
 <h1>Candidates</h1>
 
-@code {
+<div class="container">
+    <div class="search-address">
+        <h4>Street Address*:</h4>
+        <EditForm Model="@userInput" OnValidSubmit="@SearchLocation">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
 
+            <InputText id="userStreetAddress" @bind-Value="userInput.userStreetAddress" />
+            <p></p>
+            <h4>Zip Code*:</h4>
+            <p></p>
+            <InputNumber id="userZipCode" @bind-Value="userInput.userZipCode" Step="1" />
+            <p></p>
+            <button type="submit" class="btn btn-red">Submit</button>
+        </EditForm>
+    </div>
+</div>
+
+@if (candidates != null && candidates.Any())
+{
+    <div class="candidates-list">
+        <h2>List of Candidates</h2>
+        <ul>
+            @foreach (var candidate in candidates)
+            {
+                <li>
+                    <h3>@(candidate.CandidateFirstName) @(candidate.CandidateLastName ?? "No Information")</h3>
+                    <p>Office: @(candidate.OfficeName)</p>
+                    <p>District: @(candidate.DistrictNameAndNumber)</p>
+                    <p>Party: @(candidate.PoliticalParty)</p>
+                    <p>Status: @(candidate.CandidateStatus)</p>
+                    <p>Phone: @(candidate.PublicPhone)</p>
+                    <p>Email: @(candidate.Email)</p>
+                    <p>Website: <a href="@(candidate.Website)">@candidate.Website</a></p>
+                    <p>Facebook: <a href="@(candidate.Facebook)">@candidate.Facebook</a></p>
+                    <p>Twitter: <a href="@(candidate.Twitter)">@candidate.Twitter</a></p>
+                    <p>Other: @(candidate.Other)</p>
+
+                    @if (UserLogin.User != null && UserLogin.User.isActive == true)
+                    {
+                        @if (IsCandidateAlreadySaved(candidate.Id))
+                        {
+                            <button type="button" class="btn btn-red">Already Added to Account</button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-red" @onclick="() => SaveCandidate(candidate.Id)">Save to My Account</button>
+                        }
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+}
+else if (candidates != null && !candidates.Any())
+{
+    <p>No candidates found for the specified district.</p>
+}
+else if (searchAttempted)
+{
+    <p>No candidates information available.</p>
+}
+
+<style>
+    .container {
+        display: flex;
+        padding: 2%;
+        background-color: #ffd200;
+        align-items: flex-start;
+        height: 50vh;
+        border-radius: 10px;
+    }
+
+    .search-address {
+    }
+
+    .candidates-list {
+        margin-top: 20px;
+    }
+
+        .candidates-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .candidates-list li {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .candidates-list h3 {
+            margin: 0;
+        }
+</style>
+
+@code {
+    private UserAddress userInput = new UserAddress();
+    private string? address = "";
+    private string district;
+    private CandidateModel? candidate;
+    private List<CandidateModelDB> candidates;
+    private bool searchAttempted = false;
+    private HashSet<int> savedCandidateIds = new HashSet<int>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var uri = new Uri(NavigationManager.Uri);
+        var queryString = uri.Query;
+
+        if (queryString.Contains("fromHome=true"))
+        {
+            userInput.userStreetAddress = MySearch.UserAddress.userStreetAddress;
+            userInput.userZipCode = MySearch.UserAddress.userZipCode;
+            SearchLocation();
+        }
+
+        if (UserLogin.User != null)
+        {
+            var savedCandidates = await _db.GetSavedCandidatesForUser(UserLogin.User.username);
+            savedCandidateIds = savedCandidates.Select(c => c.Id).ToHashSet();
+        }
+    }
+
+    private async Task SearchLocation()
+    {
+        searchAttempted = true;
+
+        address = $"{userInput.userStreetAddress}, {userInput.userZipCode}";
+
+        candidate = await info.getVoterInfo(address);
+        if (candidate != null)
+        {
+            var contest = candidate.contests.FirstOrDefault(c => c.office == "Representative in Congress" && c.type == "General" && c.level.Contains("country"));
+            district = contest?.district?.name;
+
+            if (!string.IsNullOrEmpty(district))
+            {
+                candidates = await _db.GetCandidatesByDistrict(district);
+            }
+
+            StateHasChanged();
+        }
+    }
+
+    private bool IsCandidateAlreadySaved(int candidateId)
+    {
+        return savedCandidateIds.Contains(candidateId);
+    }
+
+    private async Task SaveCandidate(int candidateId)
+    {
+        if (UserLogin.User != null)
+        {
+            var isAlreadySaved = await _db.IsCandidateAlreadySaved(UserLogin.User.username, candidateId);
+            if (!isAlreadySaved)
+            {
+                await _db.SaveCandidateForUser(UserLogin.User.username, candidateId);
+                savedCandidateIds.Add(candidateId);
+            }
+        }
+    }
 }

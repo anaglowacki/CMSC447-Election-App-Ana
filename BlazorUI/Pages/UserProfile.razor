@@ -6,158 +6,178 @@
 @inject IUserData _db
 
 <div class="banner-container">
-	<img src="banner2.png" alt="Banner" class="banner-image" />
-	<h1 class="page-title"><b>My Profile</b></h1>
+    <img src="banner2.png" alt="Banner" class="banner-image" />
+    <h1 class="page-title"><b>My Profile</b></h1>
 </div>
 
 <div class="user-info" style="background-color: black">
-	<h2 class="user-info-text">Welcome back, @UserLogin.User.username</h2>
-	<div class="user-info-container" style="display: flex;">
-		<div class="user-email">
-			@if (string.IsNullOrEmpty(@UserLogin.User.email))
-			{
-				<p class="user-info-text">Email: N/A</p>
-				<button type="button" class="btn btn-red" @onclick="changeEmail">Change</button>
-			}
-			else
-			{
-				<p class="user-info-text">Email: @UserLogin.User.email</p>
-				<button type="button" class="btn btn-red" @onclick="changeEmail">Change</button>
-			}
-			@if (cEmail)
-			{
-				<EditForm Model="@u" OnValidSubmit="@UpdateUserEmail">
-					<DataAnnotationsValidator />
-					<ValidationSummary />
+    <h2 class="user-info-text">Welcome back, @UserLogin.User.username</h2>
+    <div class="user-info-container" style="display: flex;">
+        <div class="user-email">
+            @if (string.IsNullOrEmpty(@UserLogin.User.email))
+            {
+                <p class="user-info-text">Email: N/A</p>
+                <button type="button" class="btn btn-red" @onclick="changeEmail">Change</button>
+            }
+            else
+            {
+                <p class="user-info-text">Email: @UserLogin.User.email</p>
+                <button type="button" class="btn btn-red" @onclick="changeEmail">Change</button>
+            }
+            @if (cEmail)
+            {
+                <EditForm Model="@u" OnValidSubmit="@UpdateUserEmail">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
 
-					<InputText id="useremail" @bind-Value="u.email" />
-					<button type="submit" class="btn btn-red">Submit</button>
-				</EditForm>
-			}
-		</div>
-		<div class="user-address">
-			@if (string.IsNullOrEmpty(@UserLogin.User.address))
-			{
-				<p class="user-info-text">Polling Location: N/A </p>
-				<button type="button" class="btn btn-red" @onclick="changeAddress">Change</button>
-			}
-			else
-			{
-				<p class="user-info-text">Polling Location: @UserLogin.User.address</p>
-				<button type="button" class="btn btn-red" @onclick="changeAddress">Change</button>
-			}
-
-		</div>
-	</div>
+                    <InputText id="useremail" @bind-Value="u.email" />
+                    <button type="submit" class="btn btn-red">Submit</button>
+                </EditForm>
+            }
+        </div>
+        <div class="user-address">
+            @if (string.IsNullOrEmpty(@UserLogin.User.address))
+            {
+                <p class="user-info-text">Polling Location: N/A </p>
+                <button type="button" class="btn btn-red" @onclick="changeAddress">Change</button>
+            }
+            else
+            {
+                <p class="user-info-text">Polling Location: @UserLogin.User.address</p>
+                <button type="button" class="btn btn-red" @onclick="changeAddress">Change</button>
+            }
+        </div>
+    </div>
 </div>
 
-
-
-<div class="candiates-header">
-	<h2 class="subheading">My Candidates</h2>
+<div class="candidates-header">
+    <h2 class="subheading">My Candidates</h2>
 </div>
 
-@if (usrCandidates is null)
+@if (savedCandidates != null && savedCandidates.Any())
 {
+    <div class="candidates-list">
+        @foreach (var candidate in savedCandidates)
+        {
+            <div class="candidates-container">
+                <div class="img-bg"></div>
+                <div class="candidate-text">
+                    <h3 class="subheading">@candidate.CandidateFirstName @candidate.CandidateLastName</h3>
+                    <h4 class="subheading">@candidate.OfficeName</h4>
+                    <p class="info">
+                        Party: @candidate.PoliticalParty<br>
+                        Status: @candidate.CandidateStatus<br>
+                        Phone: @candidate.PublicPhone<br>
+                        Email: @candidate.Email<br>
+                        Website: <a href="@candidate.Website">@candidate.Website</a><br>
+                        Facebook: <a href="@candidate.Facebook">@candidate.Facebook</a><br>
+                        Twitter: <a href="@candidate.Twitter">@candidate.Twitter</a><br>
+                        Other: @candidate.Other
+                    </p>
+                    <div class="delete-button-container">
+                        <button type="button" class="btn btn-danger" @onclick="() => DeleteCandidate(candidate.Id)">Delete Candidate</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 }
 else
 {
-	@foreach (var contest in usrCandidates)
-	{
-		@foreach (var candidate in contest.candidates)
-		{
-			<div class="candidates-container">
-				<div class="img-bg"></div>
-				<div class="candidate-text">
-					<h3 class="subheading">@candidate.name</h3>
-					<h4 class="subheading">@contest.office</h4>
-					<p class="info">
-						<!--@candidate.party<br>
-						@candidate.candidateUrl<br>
-						@candidate.email<br>
-						@candidate.phone<br>
-						-->
-					</p>
-					<div>
-						<h4 class="subheading">Notes:</h4>
-						<p class="info"></p>
-					</div>
-				</div>
-			</div>
-		}
-	}
+    <p>No candidates saved.</p>
 }
 
 <button type="button" class="btn btn-red" style="display: block; margin: auto; width: 20%;" @onclick="goToCandidates">Add Candidates</button>
+<button type="button" class="btn btn-danger" @onclick="DeleteAccount">Delete Account</button>
 
 <style>
+    .subheading {
+        color: #e21833;
+        font-weight: bold;
+    }
 
-	.subheading {
-		color: #e21833;
-		font-weight: bold;
-	}
+    .candidates-container {
+        display: flex;
+        margin-bottom: 20px;
+    }
 
-	.candidates-container {
-		display: flex;
-	}
+    .candidates-container > div {
+        width: 50%;
+    }
 
-		.candidates-container > div {
-			width: 50%;
-		}
+    .user-info {
+        padding: 2%;
+    }
 
+    .user-info-text {
+        color: white;
+    }
 
-	.img-bg {
-		background-color: #ffd200;
-	}
+    .user-info-container > div {
+        width: 50%;
+    }
 
-	.user-info {
-		padding: 2%;
-	}
-
-	.user-info-text {
-		color: white;
-	}
-
-	.user-info-container > div {
-		width: 50%;
-	}
-
+    .delete-button-container {
+        margin-top: 10px;
+    }
 </style>
 
-
 @code {
-	//CandidateModel.contests
-	private List<Contest> usrCandidates;
-	private bool cEmail = false;
-	private UserModel u = new UserModel();
+    private List<CandidateModelDB> savedCandidates;
+    private bool cEmail = false;
+    private UserModel u = new UserModel();
 
-	private void goToCandidates()
-	{
-		NavigationManager.NavigateTo("/Candidates");
-	}
+    private void goToCandidates()
+    {
+        NavigationManager.NavigateTo("/Candidates");
+    }
 
-	private void changeEmail()
-	{
-		//UserLogin.User.email;
-		cEmail = !cEmail;
+    private void changeEmail()
+    {
+        cEmail = !cEmail;
+    }
 
-	}
+    private async Task UpdateUserEmail()
+    {
+        UserLogin.User.email = u.email;
+        await _db.UpdateEmail(UserLogin.User);
+        cEmail = !cEmail;
+        u = new UserModel();
+    }
 
-	private async Task UpdateUserEmail()
-	{
-		UserLogin.User.email = u.email;
-		await _db.UpdateEmail(UserLogin.User);
-		cEmail = !cEmail;
-		u = new UserModel();
-	}
+    private void changeAddress()
+    {
+        NavigationManager.NavigateTo("/FindMyPollingPlace");
+    }
 
-	private void changeAddress()
-	{
-		NavigationManager.NavigateTo("/FindMyPollingPlace");
-	}
+    private async Task DeleteAccount()
+    {
+        if (UserLogin.User != null)
+        {
+            await _db.DeleteAccount(UserLogin.User);
+            UserLogin.User = new UserModel();
+            UserLogin.User.isActive = false;
+            NavigationManager.NavigateTo("/", forceLoad: true);
+        }
+    }
 
-	protected override async Task OnInitializedAsync()
-	{
-		if (UserLogin.User == null) NavigationManager.NavigateTo("/");
-	}
+    private async Task DeleteCandidate(int candidateId)
+    {
+        if (UserLogin.User != null)
+        {
+            await _db.DeleteCandidateForUser(UserLogin.User.username, candidateId);
+            savedCandidates = await _db.GetSavedCandidatesForUser(UserLogin.User.username);
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (UserLogin.User == null)
+        {
+            NavigationManager.NavigateTo("/");
+            return;
+        }
+
+        savedCandidates = await _db.GetSavedCandidatesForUser(UserLogin.User.username);
+    }
 }
