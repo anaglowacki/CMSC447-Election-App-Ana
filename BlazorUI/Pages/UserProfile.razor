@@ -74,6 +74,8 @@
                         Twitter: <a href="@candidate.Twitter">@candidate.Twitter</a><br>
                         Other: @candidate.Other
                     </p>
+                    <InputTextArea id="user-notes" rows="10" cols="50" @bind-Value=@notes.Find(x => x.candidateID == candidate.Id).notes /><br />
+                    <button type="button" class="btn btn-yellow" @onclick="() => SaveNotes(candidate.Id)">Save</button>
                     <div class="delete-button-container">
                         <button type="button" class="btn btn-danger" @onclick="() => DeleteCandidate(candidate.Id)">Delete Candidate</button>
                     </div>
@@ -87,7 +89,7 @@ else
     <p>No candidates saved.</p>
 }
 
-<button type="button" class="btn btn-red" style="display: block; margin: auto; width: 20%;" @onclick="goToCandidates">Add Candidates</button>
+<button type="button" class="btn btn-red" style="display: block; margin: auto;" @onclick="goToCandidates">Add Candidates</button>
 <button type="button" class="btn btn-danger" @onclick="DeleteAccount">Delete Account</button>
 
 <style>
@@ -99,10 +101,7 @@ else
     .candidates-container {
         display: flex;
         margin-bottom: 20px;
-    }
-
-    .candidates-container > div {
-        width: 50%;
+        justify-content: center;
     }
 
     .user-info {
@@ -124,8 +123,10 @@ else
 
 @code {
     private List<CandidateModelDB> savedCandidates;
+    private List<UserCandidate> notes;
     private bool cEmail = false;
     private UserModel u = new UserModel();
+    private string text;
 
     private void goToCandidates()
     {
@@ -165,8 +166,18 @@ else
     {
         if (UserLogin.User != null)
         {
+
             await _db.DeleteCandidateForUser(UserLogin.User.username, candidateId);
             savedCandidates = await _db.GetSavedCandidatesForUser(UserLogin.User.username);
+        }
+    }
+
+    private async Task SaveNotes(int candidateId)
+    {
+        if (UserLogin.User != null)
+        {
+            string newNotes = notes.Find(x => x.candidateID == candidateId).notes;
+            await _db.SaveNotes(newNotes, candidateId, UserLogin.User.username);
         }
     }
 
@@ -179,5 +190,6 @@ else
         }
 
         savedCandidates = await _db.GetSavedCandidatesForUser(UserLogin.User.username);
+        notes = await _db.GetNotes(UserLogin.User.username);
     }
 }
