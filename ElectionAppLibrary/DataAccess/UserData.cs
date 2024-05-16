@@ -15,7 +15,13 @@ namespace ElectionAppLibrary.DataAccess
         Task InsertUser(UserModel user);
 		Task UpdateAddress(UserModel user);
 		Task UpdateEmail(UserModel user);
-		Task DeleteAccount(UserModel user);
+		Task<List<CandidateModelDB>> GetCandidatesByDistrict(string district);
+        Task SaveCandidateForUser(string username, int candidateId);
+        Task<List<CandidateModelDB>> GetSavedCandidatesForUser(string username);
+        Task DeleteCandidateForUser(string username, int candidateId);
+        Task<bool> IsCandidateAlreadySaved(string username, int candidateId);
+        Task DeleteAccount(UserModel user);
+
 	}
 
     public class UserData : IUserData
@@ -59,11 +65,50 @@ namespace ElectionAppLibrary.DataAccess
             return _db.SaveData(sql, user);
         }
 
-		public Task DeleteAccount(UserModel user)
+		public Task<List<CandidateModelDB>> GetCandidatesByDistrict(string district)
 		{
-			string sql = @"delete from dbo.app_user where username=@username";
+			string sql = "SELECT * FROM Candidates WHERE DistrictNameAndNumber IN (@District, 'State of Maryland')";
+			return _db.LoadData<CandidateModelDB, dynamic>(sql, new { District = district });
+		}
+
+        public Task SaveCandidateForUser(string username, int candidateId)
+        {
+            string sql = "INSERT INTO CandidatesByUser (username, candidateId) VALUES (@username, @candidateId)";
+            return _db.SaveData(sql, new { username, candidateId });
+        }
+
+        public Task<List<CandidateModelDB>> GetSavedCandidatesForUser(string username)
+        {
+            string sql = @"SELECT c.* 
+                           FROM Candidates c
+                           INNER JOIN CandidatesByUser cu ON c.Id = cu.candidateId
+                           WHERE cu.username = @username";
+            return _db.LoadData<CandidateModelDB, dynamic>(sql, new { username });
+        }
+
+        public Task DeleteCandidateForUser(string username, int candidateId)
+        {
+            string sql = "DELETE FROM CandidatesByUser WHERE username = @username AND candidateId = @candidateId";
+            return _db.SaveData(sql, new { username, candidateId });
+        }
+
+        public async Task<bool> IsCandidateAlreadySaved(string username, int candidateId)
+        {
+            string sql = "SELECT COUNT(1) FROM CandidatesByUser WHERE username = @username AND candidateId = @candidateId";
+            var result = await _db.LoadDatum<int, dynamic>(sql, new { username, candidateId });
+            return result > 0;
+        }
+
+        public Task DeleteAccount(UserModel user)
+		{
+            string sql = @"delete from dbo.CandidatesByUser where username=@username";
+
+            _db.SaveData(sql, user);
+
+			sql = @"delete from dbo.app_user where username=@username";
 
 			return _db.SaveData(sql, user);
+			
 		}
 	}
 }

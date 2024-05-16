@@ -1,0 +1,126 @@
+Office Name	Contest Run By District Name and Number	Candidate Ballot Last Name and Suffix	Candidate First Name and Middle Name	Office Political Party	Candidate Status	Public Phone	Email	Website	Facebook	Twitter	Other
+President of the United States	State Of Maryland	Biden	Joe	Democratic	Active		press@joebiden.com	www.joebiden.com		@JoeBiden	
+President of the United States	State Of Maryland	Phillips	Dean	Democratic	Active	844	hello@dean24.com	dean24.com	https://www.facebook.com/deanphillips2024/	twitter.com/deanbphillips	instagram.com/deanphillips2024/
+President of the United States	State Of Maryland	Williamson	Marianne	Democratic	Active			www.marianne2024.com	facebook.com/williamsonmarianne/	twitter.com/marwilliamson	instagram.com/mariannewilliamson/
+President of the United States	State Of Maryland	Haley	Nikki R.	Republican	Active		info@nikkihaley.com	www.nikkihaley.com			
+President of the United States	State Of Maryland	Trump	Donald J.	Republican	Active		info@donaldtrump.com	www.donaldjtrump.com	facebook.com/DonaldTrump	twitter.com/realdonaldtrump	instagram.com/realdonaldtrump
+U.S. Senator	State Of Maryland	Alsobrooks	Angela	Democratic	Active		info@angelaalsobrooks.com	www.angelaalsobrooks.com	facebook.com/teamalsobrooks	twitter.com/@alsobrooksformd	instagram.com/@alsobrooksformd
+U.S. Senator	State Of Maryland	"Cobb, Sr."	Michael W.	Democratic	Active	(443) 690-0989	cobbroof@gmail.com				tiktok@mikecobb355
+U.S. Senator	State Of Maryland	Crews	Marcellus	Democratic	Active	(301) 325-8898	admin@marcelluscrews.com	www.MarcellusCrews.com	facebook.com/Crews2me	@crews2me	instagram.com/crewsmarcellus/
+U.S. Senator	State Of Maryland	Frydenborg	Brian E.	Democratic	Active	(240) 621-2820	bf@brian4md.com	https//brian4md.com		@bfry1981	LinkedIn:Brian Frydenborg
+U.S. Senator	State Of Maryland	Griffin	Scottie J.	Democratic	Active	(703) 963-1783	drgrifn@aol.com				
+U.S. Senator	State Of Maryland	Houton	Robert K.	Democratic	Active		rob@voterobhouton.com				
+U.S. Senator	State Of Maryland	Perez	Joseph	Democratic	Active		perezforussenate@gmail.com	www.gojoeperez.com		twitter.com/@perez4ussenate	instagram.com/perez4ussenate
+U.S. Senator	State Of Maryland	Seuferer	Steven Henry	Democratic	Active	(301) 966-7218	stevesforcongress@gmail.com		facebook.com/SteveSForCongress	@stevesforcongress	
+U.S. Senator	State Of Maryland	Trone	David J.	Democratic	Active	(301) 392-7926	info@davidtrone.com	www.davidtrone.com	facebook.com/davidjtrone	@davidjtrone	
+U.S. Senator	State Of Maryland	Wildman	Andrew Jaye	Democratic	Active	(410) 443-9608	ajayewildman@gmail.com	https://wildmanforussenate.com/hot-topics		@cs2news	CS2News Podcast
+U.S. Senator	State Of Maryland	Barakat	Moe H.	Republican	Active		info@moebarakat.com	www.Barakatforsenate.com	facebook.com/MBarakatDC	twitter.com/@MBarakatDC	
+U.S. Senator	State Of Maryland	Chaffee	Chris	Republican	Active	(410) 474-5629	chrischaffeeforussenate@gmail.com	www.chaffeeforussenate.com			
+U.S. Senator	State Of Maryland	Ficker	Robin	Republican	Active	(301) 919-9068	robinficker@msn.com	www.voteficker.com	facebook.com/RobinForUSSenate	twitter.com/@Robin_Ficker	
+U.S. Senator	State Of Maryland	Friend	Lorie R.	Republican	Active	(240) 321-3477	electafriend@gmail.com	www.friendinthesenate.com	facebook.com/Lorie R. Friend	@LorieFriendGOP	
+U.S. Senator	State Of Maryland	Hogan	Larry	Republican	Active	(410) 205-9062	info@larryhogan.com	www.LarryHogan.com	facebook.com/govLarryHogan	twitter.com/govLarryHogan	instagram:@LarryHogan
+U.S. Senator	State Of Maryland	Myrick	John A.	Republican	Active	(301) 751-5651	johnamyrickforsenate@gmail.com	www.johnmyrickforsenate.org	facebook.com/john.myrick.for.senate/	@JohnMyrickforMD	instagram.com/https://instagram.com/JohnMyrickforSenate/
+U.S. Senator	State Of Maryland	Seyoum	Laban Y.A	Republican	Active						
+U.S. Senator	State Of Maryland	Scott	Mike	Libertarian	Active	(240) 437-2272	mikescottonewordallcaps@gmail.com	www.lifeinallcaps.com		twitter.com/@mikescott1word	linkedin.com/michaelscottag47
+U.S. Senator	State Of Maryland	Wallace	Nancy	Other Candidates	Seeking the Nomination	(240) 644-2952	nancy@nancywallace.us				
+U.S. Senator	State Of Maryland	Osuchukwu	Emmanuel O.	Unaffiliated	Declaration of Intent		Termlimit.net@gmail.com	www.Termlimit.net		@Termlimit59650	
+U.S. Senator	State Of Maryland	Dominguez	Juan	Democratic	Withdrawn - 01/03/2024	(301) 200-1231	juan@juanformaryland.com	www.juanformaryland.com	facebook.com/juanformaryland	@juanformaryland	instagram.com/@juanformaryland
+U.S. Senator	State Of Maryland	Bly	Ray	Republican	Withdrawn - 01/31/2024	(410) 799-3516	raybly@verizon.net	www.raybly.com	facebook.com/Raybly	@raybly	www.youtube.com/raybly
+U.S. Senator	State Of Maryland	Teichert	John	Republican	Withdrawn - 02/20/2024	(410) 357-1621	john@teichertformaryland.com	www.teichertformaryland.com	facebook.com/johnformaryland	@JohnforMaryland	instagram.com/JohnforMaryland
+U.S. Senator	State Of Maryland	Thormann	John	Republican	Withdrawn - 02/05/2024		thormann4maryland@gmail.com	www.thormann4maryland.com			
+U.S. Senator	State Of Maryland	Landman	Moshe Y.	Green	Withdrawn - 11/20/2023	(443) 525-0478	MosheGreenParty@gmail.com	www.moshelandman.us	facebook.com/mosheylandman	@moshelandman	
+Representative in Congress	Congressional District 1	"Miller, III"	Blane H.	Democratic	Active	(443) 687-4339	bhmiller4congress@gmail.com	miller4maryland.com	www.Facebook.com/Blane Miller	@Miller4Maryland	IG:miller4maryland
+Representative in Congress	Congressional District 1	Oluwadare	Blessing T.	Democratic	Active	(443) 519-8375	motiyato@gmail.com		facebook.com/obtemitayo1		linkedin.com/In/blessing-Oluwadare-107616234
+Representative in Congress	Congressional District 1	"Bruneau, Sr."	Chris	Republican	Active	(443) 865-2637	chris@cbforcongress.com	cbforcongress.com	www.facebok.comcbforcongress	@cbforcongtess24	
+Representative in Congress	Congressional District 1	Harris	Andy	Republican	Active	(443) 693-7244	info@andyharris.com	www.andyharris.com	Facebook.com/Andy Harris	@Harris4Congress	Instagram.com/harrisforcongress
+Representative in Congress	Congressional District 1	Lemon	Michael Scott	Republican	Active	(410) 610-4678	michael@lemon4u.org	www.lemon4u.org			
+Representative in Congress	Congressional District 1	Oluwadare	Blessing T.	Republican	Withdrawn - 07/25/2023	(443) 519-8375	motiyato@gmail.com		facebook.com/obtemitayo1		linkedin.com/In/blessing-Oluwadare-107616234
+Representative in Congress	Congressional District 2	Bhandari	Harry	Democratic	Active	(443) 788-8370	harry@harrybhandari.com	www.harrybhandari.com	facebook.com/harrybhandari	@harry4maryland	instagram.com/@harrybhandari_official
+Representative in Congress	Congressional District 2	Kyriakakos	Sia	Democratic	Active		sia@siaforcongress.com	www.siaforcongress.com	facebook.com/SiaforCongress	twitter.com/@SiaforCongress	instagram.com/SiaforCongress
+Representative in Congress	Congressional District 2	"Olszewski, Jr."	"John ""Johnny O"""	Democratic	Active	(410) 701-0061	info@gojohnnyo.com	www.gojohnnyo.com	facebook.com/JohnnyOlszewski	@johnnyojr	
+Representative in Congress	Congressional District 2	Reed-Burns	Sharron	Democratic	Active	(443) 823-7801	sharronreedburns@yahoo.com			twitter.com/@forSharron	
+Representative in Congress	Congressional District 2	Sjoberg	Jessica	Democratic	Active	(410) 776-4335	sjmptg@yahoo.com		facebook.com/JessicaSjoberg		instagram.com/JessieSjoberg
+Representative in Congress	Congressional District 2	"Spellman, Jr."	Clint	Democratic	Active	(443) 760-6577	spellmanclintonjr@gmail.com		Facebook.com/Clinton Spellman Jr		
+Representative in Congress	Congressional District 2	Klacik	Kim	Republican	Active	(410) 458-3961	kimklacik@gmail.com		Facebook.com/@KimberlyKlacik	@KimKBaltimore	
+Representative in Congress	Congressional District 2	Thormann	John	Republican	Active		thormann4maryland@gmail.com	www.thormann4maryland.com			
+Representative in Congress	Congressional District 2	Wallace	Dave	Republican	Active	(240) 772-1638	dave@wallaceforamerica.com	www.davewallace.us			
+Representative in Congress	Congressional District 3	Chang	Mark S.	Democratic	Active	(410) 371-7567	marksoochang@gmail.com	www.markformaryland.com	facebook.com/delegatemarkchang		instagram.com/markformaryland
+Representative in Congress	Congressional District 3	Coburn	Michael	Democratic	Active	(845) 797-3334	info@coburnformaryland.com				
+Representative in Congress	Congressional District 3	Colombo	Malcolm Thomas	Democratic	Active	(443) 481-7218	contact@malcolmtcolombo.com	www.malcolmtcolombo.com	www.facebook.com/malcolmtcolombo	@malcolmtcolombo	instagram.com/malcolmthomascolombo
+Representative in Congress	Congressional District 3	Diehl	Abigail	Democratic	Active	(443) 569-2003	adiehl@abigaildiehl.com	abigaildiehl.com	Facebook.com/DiehlForCongress	twitter.com/@Diehl4Congress	instagram.com/diehlforcongress
+Representative in Congress	Congressional District 3	Dominguez	Juan	Democratic	Active	(301) 200-1231	juan@juanformaryland.com	www.juanformaryland.com	facebook.com/juanformaryland	@juanformaryland	instagram.com/@juanformaryland
+Representative in Congress	Congressional District 3	Donahue	Lindsay	Democratic	Active		lindsay@donahueforcongress.com	www.donahueforcongress.com			
+Representative in Congress	Congressional District 3	Dunn	Harry Anthony	Democratic	Active	(410) 231-3074	info@harrydunnforcongress.com	www.harrydunnforcongress.com	facebook.com/harrydunnforcongress.com	twitter.com/@libradunn	Instagram.com/libradunn
+Representative in Congress	Congressional District 3	Elfreth	Sarah	Democratic	Active		info@elfrethformaryland.com	www.elfrethformaryland.com	facebook.com/sarahformd	twitter.com/@sarahformd	
+Representative in Congress	Congressional District 3	Gosnell	Mark Steven	Democratic	Active		marylanddistrict3@electdrgosnell2024.com	www.electdrgosnell2024.com	facebook.com/electgosnell		
+Representative in Congress	Congressional District 3	Hill	Terri	Democratic	Active		info@terrihillforcongress.org	www.terrihillforcongress.org	facebook.com/terrihillforcongress	@voteterrihill	
+Representative in Congress	Congressional District 3	Khan	Aisha	Democratic	Active	(443) 720-9016	aishaforcongress@gmail.com	www.AishaKhanforCongress.com	facebook.com/AishaforCongress	@AishaforCongress	instagram.com/AishaforCongress
+Representative in Congress	Congressional District 3	Lam	Clarence	Democratic	Active	(301) 633-1489	info@clarencelam.com	www.clarencelam.com	facebook.com/clarencelammd	twitter.com/ClarenceLamMD	
+Representative in Congress	Congressional District 3	Libber	Matt	Democratic	Active	(443) 474-3717	info@mattlibber.com	www.mattlibber.com	facebook.com/LibberForMaryland	@LibberForMD	Instagram.com/@LibberForMD
+Representative in Congress	Congressional District 3	Lyman Nabors	Kristin Anne	Democratic	Active	(410) 614-2347	lymannaborsforcongress2024@gmail.com	www.lymannaborsforcongress2024.com	Facebook.com/kristinlymannabors	twitter.com/@KristinLyman1	Instagram.com/lymannabors
+Representative in Congress	Congressional District 3	"Morse, III"	John H.	Democratic	Active		info@morse4maryland.com	www.morse4maryland.com			
+Representative in Congress	Congressional District 3	Pretot	Jake	Democratic	Active		jake.pretot@jakepretot.vote	www.jakepretot.vote	www.facebook.com/jakepretot	@jake_pretot	instagram: jakepretot
+Representative in Congress	Congressional District 3	Quinn	Don	Democratic	Active	(443) 234-9481	donquinn@votedonquinn.com	www.votedonquinn.com	facebook.com/votedonquinn		
+Representative in Congress	Congressional District 3	Rogers	Mike	Democratic	Active		mjrrodrigo@yahoo.com	www.mikerogers4congress.co	facebook.com/VoteMikeRogers	@MikeJRogers4	Instagram.com/VoteMikeRogers
+Representative in Congress	Congressional District 3	Rupli	Danny Craig	Democratic	Active	(240) 481-2677	rupli@aol.com				
+Representative in Congress	Congressional District 3	Schuman	Gary	Democratic	Active	(443) 248-0028	garyschuman111@gmail.com	www.Garyschumanforcongress2024.com	facebook.com/Gary Schuman for Congress 2024	@GarySchuman2024	https://YouTube/ @garyschumanforcongress2024
+Representative in Congress	Congressional District 3	Silver	Stewart Fred	Democratic	Active	(667) 308-6797	silver2.students@towson.edu				
+Representative in Congress	Congressional District 3	Woodard	Jeff	Democratic	Active	(410) 946-7826	votejeff1@gmail.com	www.votejeffwoodard.com			
+Representative in Congress	Congressional District 3	"Baker, Jr."	Arthur Radford	Republican	Active		arthur4maryland@gmail.com	www.artformaryland.com	facebook.com/VoteartforMaryland	@artforMaryland	instagram.com/ArtforMaryland
+Representative in Congress	Congressional District 3	Bly	Ray	Republican	Active	(410) 799-3516	raybly@verizon.net	www.raybly.com	facebook.com/Raybly	@raybly	www.youtube.com/raybly
+Representative in Congress	Congressional District 3	Flowers	Berney	Republican	Active	(443) 296-7807		flowersformaryland.com	facebook.com/flowersformaryland	@flowersformaryland	instagram.com/flowersformaryland
+Representative in Congress	Congressional District 3	Harris	"Thomas E. ""Pinkston"""	Republican	Active	(667) 386-0283	pinkstone039@gmail.com				
+Representative in Congress	Congressional District 3	Mayo	Jordan	Republican	Active	(443) 261-5923	jordanmayoforcongress@gmail.com	www.jordanmayoforcongress.com		@mayo4congress	Instagram.com/momma.mayo
+Representative in Congress	Congressional District 3	Mian	Naveed	Republican	Active		Naveed@Naveed4Congress.com	www.Naveed4Congress.org			Instagram.com/Naveed_Mian
+Representative in Congress	Congressional District 3	Morales	Joshua M.	Republican	Active		votejoshuamorales@gmail.com	http://www.votejoshuamorales.com/	https://www.facebook.com/profile.php?id=	https://twitter.com/VoteJoshMorales	https://www.instagram.com/votejoshuamorales/
+Representative in Congress	Congressional District 3	Rea	John	Republican	Active	(410) 570-4271					
+Representative in Congress	Congressional District 3	Steinberger	Robert J.	Republican	Active		robsteinbergerforcongress@gmail.com	www.robsteinbergerforcongress.com	www.facebook.com/profile.php?id=61552998666525	@RJS4Congress	instagram.com/robsteinbergerforcongress
+Representative in Congress	Congressional District 3	Barajas	Miguel	Libertarian	Active	(443) 364-8587	barajas4congress@gmail.com				
+Representative in Congress	Congressional District 4	Gomes	Joseph	Democratic	Active	(301) 572-7839	josephgomesforcongress@gmail.com	http://josephgomesforuscongress.com/			
+Representative in Congress	Congressional District 4	Ivey	Glenn F.	Democratic	Active	(301) 537-1451	info@iveyforcongress.com	www.iveyforcongress.com	facebook.com/glennivey	@GlennIveyMD	@GlennIveyMD
+Representative in Congress	Congressional District 4	Johnson	Emmett	Democratic	Active		emmett@mymidatlantic.com				
+Representative in Congress	Congressional District 4	Njinimbot	Gabriel	Democratic	Active		info@gabrielforcongress.com	www.Gabrielforcongress.com			
+Representative in Congress	Congressional District 4	McDermott	George	Republican	Active		georgemcdermott2018@gmail.com	www.georgemcdermott.com			
+Representative in Congress	Congressional District 5	Bareebe	Quincy	Democratic	Active	(301) 300-3085	info@quincyforcongress.com	www.quincyforcongress.com	www.facebook.com/profile.php?id=61553729987259	@QuincyBareebeMD	instagram.com/Quincy.Bareebe
+Representative in Congress	Congressional District 5	Crooms	Andrea L.	Democratic	Active	(240) 729-1910	info@croomsforcongress.com	www.croomsforcongress.com	facebook.com/Croomsforcongress	@AndreaCrooms	@andreacrooms_md5
+Representative in Congress	Congressional District 5	Hoyer	Steny	Democratic	Active	(301) 464-5710	info@hoyerforcongress.com	www.hoyerforcongress.com	www.facebook.com/hoyerforcongress	@stenyhoyer	
+Representative in Congress	Congressional District 5	Wilkes	McKayla	Democratic	Active		info@mckaylawilkes.com	www.McKaylaWilkes.com	http://www.facebook.com/meetmckayla	@meetmckayla	Instagram.com/MeetMckayla
+Representative in Congress	Congressional District 5	Talkington	Michelle	Republican	Active	(240) 903-4606	votemichelletalkington@gmail.com	www.talkingtonforcongress.com	facebook.com/votemichelletalkington	@talkin4michelle	Instagram: @votemichelletalk
+Representative in Congress	Congressional District 5	Donahue	Lindsay	Democratic	Withdrawn - 10/27/2023		lindsay@donahueforcongress.com				
+Representative in Congress	Congressional District 5	Proctor	"Leonard ""Lenny"""	Democratic	Withdrawn - 01/26/2024	(240) 209-0573	LennyProctor@hotmail.com				
+Representative in Congress	Congressional District 6	Choharis	Peter	Democratic	Active	(301) 201-0945	info@peterformaryland.com	https://www.peterformaryland.com/	https://www.facebook.com/profile.php?id=61557344597610	@Peter_for_Md_06	IG: peterformaryland
+Representative in Congress	Congressional District 6	Gluck	George	Democratic	Active	(301) 637-2047	voteforgeorge@georgegluck.com	sites.google.com/view/georgegluck	facebook.com/george.gluck.31	@gluck4congress	
+Representative in Congress	Congressional District 6	Grammer	Geoffrey	Democratic	Active	(240) 513-8425	info@geoffreygrammer.com	www.geoffreygrammer.com	facebook.com/GrammerforCongress	@geoffreygrammer	instagram.com/geoffreygrammer
+Representative in Congress	Congressional District 6	Jain	Ashwani	Democratic	Active	(240) 801-6410	jain@jainforcongress.com	www.jainforcongress.com			
+Representative in Congress	Congressional District 6	Lopez	Lesley J.	Democratic	Active	(240) 813-0164	team@lopezformaryland.com	www.lopezformaryland.com	facebook.com/lopezformaryland	@lesleyjlopez	instagram.com/lesleyjlopez
+Representative in Congress	Congressional District 6	Martinez	Tekesha A.	Democratic	Active	(301) 573-4661	info@tekeshamartinez.com	https://tekeshamartinez.com/	Facebook.com/votetekeshamartinez	twitter.com/@tekeshamartinez	instagram.com/votetekeshamartinez
+Representative in Congress	Congressional District 6	McClain Delaney	April	Democratic	Active		info@aprilMcClainDelaneyForCongress.com	www.AprilMcClainDelaneyForCongress.com	facebook.com/AprilMcClainDelaney	@april4congress	instagram.com/AMCCLAINDELANEY
+Representative in Congress	Congressional District 6	"McDow, II"	Stephen R.	Democratic	Active	(202) 909-3934	votestephen@mcdowforcongress.com	www.mcdowforcongress.com	facebook.com/mcdowforcongress	@stephenmcdow	
+Representative in Congress	Congressional District 6	Mozumder	Mohammad S.	Democratic	Active	(301) 453-5051	info@mozumder4md.com	www.mozumder4md.com	facebook.com/mozumder4md	twitter.com/@mozumder4md	
+Representative in Congress	Congressional District 6	Petrus	Adrian	Democratic	Active	(240) 417-5248	asvip_2000@icloud.com		Facebook.com/Adrian Petrus	Twitter.com/@petrusadrian	instagram.com/AdrianPetrus_11
+Representative in Congress	Congressional District 6	Rubin	Joel	Democratic	Active		joel@rubinformaryland.com	www.rubinformaryland.com	facebook.com/rubinformaryland	twitter.com/@JoelMartinRubin	instagram.com/@joelmrubin
+Representative in Congress	Congressional District 6	Sayles	Laurie-Anne	Democratic	Active	(240) 292-9754	info@saylesforus.com	www.saylesforus.com	facebook.com/Saylesforus	@Saylesforus	instagram.com/saylesforus
+Representative in Congress	Congressional District 6	Vogel	Joe	Democratic	Active		hello@joevogel.org	www.joevogel.org	Facebook.com/JoeVogelMaryland	twitter.com/joevogel_	
+Representative in Congress	Congressional District 6	West	Destiny Drake	Democratic	Active	(240) 905-4466	support@destinyforcongress.com	www.destinyforcongress.com			
+Representative in Congress	Congressional District 6	White	"Kiambo ""Bo"""	Democratic	Active	(248) 320-7418	kwhite227@gmail.com				
+Representative in Congress	Congressional District 6	Wilks	Altimont Mark	Democratic	Active		altimontwilks@gmail.com	www.tiktok.com/@altimontwilks.com	facebook.com/altimont.wilks.7		instagram.com/AltimontMarkWilks
+Representative in Congress	Congressional District 6	Cox	Dan	Republican	Active		info@coxforcongress.org	www.coxforcongress.org	www.facebook.com/official.dan.cox	@dancoxesq	
+Representative in Congress	Congressional District 6	Hyser	Chris	Republican	Active	(301) 639-9066	c.hyser2024@gmail.com	www.chrishyserforcongress.com			
+Representative in Congress	Congressional District 6	Parrott	Neil C.	Republican	Active	(240) 329-2645	contact@parrottforcongress.com	www.neilparrott.org	facebook.com/ParrottForCongress/	twitter.com/neilparrott	instagram-parrottforcongress
+Representative in Congress	Congressional District 6	Puglisi	Todd A.	Republican	Active	(240) 603-1869	todd4ushouse@aol.com		facebook.com/toddpuglisiforusHouse 6th District of Maryland Republican 2024		
+Representative in Congress	Congressional District 6	Roca	Mariela	Republican	Active	(240) 812-7046	info@rocaforcongress.com	www.rocaforcongress.com	facebook.com/rocaforcongress	@rocaforcongress	Instagram: @rocaforcongress
+Representative in Congress	Congressional District 6	Royals	Tom	Republican	Active	(240) 452-0267	tom@tomroyalsforcongress.com	www.TomroyalsforCongress.com	facebook.com/TomRoyalsforCongress	@TomRoyalsforMD	instagram.com/TomRoyalsMD
+Representative in Congress	Congressional District 6	Thiam	Brenda J.	Republican	Active	(240) 310-9453	brendathiam4congress@gmail.com	www.BrendaThiam.com	facebook.com/br.brendathiamforcongress	@bjthiam	Instagram:goaldiggerphd
+Representative in Congress	Congressional District 6	Landman	Moshe Y.	Other Candidates	Seeking the Nomination	(443) 525-0478	MosheGreenParty@gmail.com	www.moshelandman.us	facebook.com/mosheylandman	@moshelandman	
+Representative in Congress	Congressional District 6	Johnson	"Jason ""Mr. J"""	Unaffiliated	Declaration of Intent		mrjforcongress@gmail.com	www.mrjforcongress.com		@mrj_inspires	
+Representative in Congress	Congressional District 6	Mason	Mia	Democratic	Withdrawn - 10/23/2023	(410) 946-2766	miamason@mia4md.com	mia4md.com	Facebook.com/mia4md	twitter.com/mia4md	
+Representative in Congress	Congressional District 6	Barnes	Heath S.	Republican	Withdrawn - 02/08/2024		hbarnesforcongress@gmail.com	www.heathbarnesforcongress.com	facebook.com/heathbarnesformd	@heathb4congress	
+Representative in Congress	Congressional District 7	Davis	Tashi Kimandus	Democratic	Active	(757) 374-0495	tashidavisforcongress@gmail.com	www.tashidavisforcongress.org	facebook.com/TashiDavisforCongress	@TashiDavisForBaltimore	Instagram: tashidavisforBaltimore
+Representative in Congress	Congressional District 7	Mfume	Kweisi	Democratic	Active	(410) 709-8696	mfumeforcongress@gmail.com	www.mfumeforcongress.com	facebook.com/mfumeforcongress	@mfume4congress	Instagram:@mfumeforcongress
+Representative in Congress	Congressional District 7	Collier	Scott M.	Republican	Active	(410) 818-9733	dundalktv@gmail.com	www.scottcollier.org	facebook.com/scott collier		
+Representative in Congress	Congressional District 7	McNeal	"Wayne ""For Freedom"""	Republican	Active		waynemcnealforcongress@gmail.com				
+Representative in Congress	Congressional District 7	Sigley	Lorrie A.	Republican	Active	(443) 579-6930	lorriesigley@gmail.com			@lorriesigley	
+Representative in Congress	Congressional District 8	Felber	Eric	Democratic	Active	(301) 652-0111	efelber1@gmail.com		Facebook.com/Eric Felber		
+Representative in Congress	Congressional District 8	Raskin	Jamie	Democratic	Active	(240) 847-4937	info@jamieraskin.com	www.jamieraskin.com	www.facebook.com/raskin.jamie/	@jamie_raskin	instagram.com/@RaskinforCongress
+Representative in Congress	Congressional District 8	Riley	Cheryl	Republican	Active	(202) 403-7971	cherylrileypr@comcast.net	www.cherylrileypr.com	cheryl4moco	cheryl4moco	
+Representative in Congress	Congressional District 8	Yadeta	Michael	Republican	Active	(240) 505-5135	vote4ymichael@gmail.com	www.vote4ymichael.com	facebook.com/Michael _Yadeta	@MichaelYadeta	instagram.com/Michael_Yadeta
