@@ -1,0 +1,23 @@
+CREATE TABLE Candidates (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    OfficeName NVARCHAR(255) NOT NULL,
+    DistrictNameAndNumber NVARCHAR(255) NOT NULL,
+    CandidateLastName NVARCHAR(255) NOT NULL,
+    CandidateFirstName NVARCHAR(255) NOT NULL,
+    PoliticalParty NVARCHAR(255) NOT NULL,
+    CandidateStatus NVARCHAR(255) NOT NULL,
+    PublicPhone NVARCHAR(50) NULL,
+    Email NVARCHAR(255) NULL,
+    Website NVARCHAR(255) NULL,
+    Facebook NVARCHAR(255) NULL,
+    Twitter NVARCHAR(255) NULL,
+    Other NVARCHAR(255) NULL
+);
+
+CREATE TABLE CandidatesByUser (
+    username VARCHAR (20)  NOT NULL,
+    candidateId INT NOT NULL,
+    PRIMARY KEY (username, candidateId),
+    FOREIGN KEY (username) REFERENCES app_user(username),
+    FOREIGN KEY (candidateId) REFERENCES Candidates(Id)
+);

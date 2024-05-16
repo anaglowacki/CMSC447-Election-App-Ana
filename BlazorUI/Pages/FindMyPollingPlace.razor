@@ -3,7 +3,6 @@
 @using ElectionAppLibrary.DataAccess
 @inject LoginService UserLogin
 @inject NavigationManager NavigationManager
-@inject SearchService MySearch
 @inject IVoterInfoAPI info
 @inject IUserData _db
 
@@ -108,17 +107,50 @@
 
 	protected override async Task OnInitializedAsync()
 	{
+
+		var uri = new Uri(NavigationManager.Uri);
+		var queryString = uri.Query;
+
 		if (UserLogin.User != null && UserLogin.User.isActive == true && !String.IsNullOrEmpty(UserLogin.User.address))
 		{
 			location = UserLogin.User.address;
 			location = location.Replace(" - ", "+");
 			location = location.Replace(" ", "+");
 		}
+
+		if (!string.IsNullOrEmpty(queryString))
+		{
+			var searchData = ExtractAddressData(queryString);
+			if (!string.IsNullOrEmpty(searchData))
+			{
+				address = searchData;
+				location=address;
+				return;
+			}
+		}
 		else
 		{
 			location = "Maryland";
 		}
+
+
+
 		
+	}
+
+	protected string ExtractAddressData(string queryString)
+	{
+			var parameters = queryString.TrimStart('?').Split('&');
+			foreach (var parameter in parameters)
+			{
+				var keyValue = parameter.Split('=');
+				if (keyValue.Length == 2 && keyValue[0] == "address")
+				{
+					// Return the value of the "address" parameter
+					return keyValue[1];
+				}
+			}
+			return null;
 	}
 
 }
