@@ -17,6 +17,7 @@ CREATE TABLE Candidates (
 CREATE TABLE CandidatesByUser (
     username VARCHAR (20)  NOT NULL,
     candidateId INT NOT NULL,
+    notes VARCHAR (255) NULL,
     PRIMARY KEY (username, candidateId),
     FOREIGN KEY (username) REFERENCES app_user(username),
     FOREIGN KEY (candidateId) REFERENCES Candidates(Id)
