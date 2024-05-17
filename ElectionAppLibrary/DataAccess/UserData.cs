@@ -21,8 +21,10 @@ namespace ElectionAppLibrary.DataAccess
         Task DeleteCandidateForUser(string username, int candidateId);
         Task<bool> IsCandidateAlreadySaved(string username, int candidateId);
         Task DeleteAccount(UserModel user);
+        Task<List<UserCandidate>> GetNotes(string username);
+        Task SaveNotes(string notes, int ID, string username);
 
-	}
+    }
 
     public class UserData : IUserData
     {
@@ -110,5 +112,18 @@ namespace ElectionAppLibrary.DataAccess
 			return _db.SaveData(sql, user);
 			
 		}
-	}
+
+        public Task<List<UserCandidate>> GetNotes(string username)
+        {
+            string sql = @"select * from dbo.CandidatesByUser where username = @username;";
+            return _db.LoadData<UserCandidate, dynamic>(sql, new {username});
+        }
+
+        public Task SaveNotes(string notes, int ID, string username)
+        {
+            string sql = @"update dbo.CandidatesByUser set notes=@notes where username=@username and candidateId=@ID;";
+
+            return _db.SaveData(sql, new {notes, ID, username});
+        }
+    }
 }

@@ -21,7 +21,7 @@ namespace ElectionAppLibrary.DataAccess
 			var httpClient = _httpClientFactory.CreateClient("VoterInfo");
 			try
 			{
-				var info = await httpClient.GetFromJsonAsync<CandidateModel>($"?address={address}&electionId=8157&key=AIzaSyDRPOb2Wy4TIGZ2HcSuXLxxuIoNytPGIzE");
+				var info = await httpClient.GetFromJsonAsync<CandidateModel>($"?address={address}&electionId=8157&returnAllAvailableData=true&key=AIzaSyDRPOb2Wy4TIGZ2HcSuXLxxuIoNytPGIzE");
 				return info;
 
 			}

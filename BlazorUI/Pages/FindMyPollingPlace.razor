@@ -29,6 +29,20 @@
 			<p></p>
 			<button type="submit" class="btn btn-red">Submit</button>
 		</EditForm>
+		@if(errorCode == -1)
+		{
+			<br />
+			<div class="alert alert-danger" role="alert">
+				Polling location unavailable at this time. Please try again later.
+			</div>
+		}
+		else if(errorCode == -2)
+		{
+			<br />
+			<div class="alert alert-danger" role="alert">
+				Invalid address. Please try again.
+			</div>
+		}
 		@if (UserLogin.User != null && UserLogin.User.isActive == true)
 		{
 			<br />
@@ -66,6 +80,7 @@
 </style>
 @code {
 	private UserAddress userInput = new UserAddress();
+	private int errorCode = 0;
 	private string? address;
 	private string location;
 	private CandidateModel? candidate;
@@ -76,21 +91,32 @@
 		candidate = await info.getVoterInfo(address);
 		if (candidate != null)
 		{
-			location = candidate.pollingLocations[0].address.locationName
-			+ "+" + candidate.pollingLocations[0].address.line1
-			+ "+" + candidate.pollingLocations[0].address.city
-			+ "+" + candidate.pollingLocations[0].address.state
-			+ "+" + candidate.pollingLocations[0].address.zip;
+			if (candidate.pollingLocations != null)
+			{
+				location = candidate.pollingLocations[0].address.locationName
+				+ "+" + candidate.pollingLocations[0].address.line1
+				+ "+" + candidate.pollingLocations[0].address.city
+				+ "+" + candidate.pollingLocations[0].address.state
+				+ "+" + candidate.pollingLocations[0].address.zip;
 
-			location = location.Replace(" ", "+");
-			StateHasChanged();
+				location = location.Replace(" ", "+");
+				errorCode = 1;
+				StateHasChanged();
+			}
+			if (candidate.contests == null)
+			{
+				errorCode = -2;
+				return;
+			}
+			errorCode = -1;
+			return;
 		}
-
+		
 	}
 
 	private async void saveInfo()
 	{
-		if (String.Compare(location, "Maryland") == 0)
+		if (String.Compare(location, "Maryland") == 0 || errorCode == -1)
 		{
 			return;
 		}
@@ -111,13 +137,6 @@
 		var uri = new Uri(NavigationManager.Uri);
 		var queryString = uri.Query;
 
-		if (UserLogin.User != null && UserLogin.User.isActive == true && !String.IsNullOrEmpty(UserLogin.User.address))
-		{
-			location = UserLogin.User.address;
-			location = location.Replace(" - ", "+");
-			location = location.Replace(" ", "+");
-		}
-
 		if (!string.IsNullOrEmpty(queryString))
 		{
 			var searchData = ExtractAddressData(queryString);
@@ -127,6 +146,12 @@
 				location=address;
 				return;
 			}
+		}
+		else if (UserLogin.User != null && UserLogin.User.isActive == true && !String.IsNullOrEmpty(UserLogin.User.address))
+		{
+			location = UserLogin.User.address;
+			location = location.Replace(" - ", "+");
+			location = location.Replace(" ", "+");
 		}
 		else
 		{
