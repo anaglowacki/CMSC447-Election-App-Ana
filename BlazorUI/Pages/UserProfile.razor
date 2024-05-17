@@ -158,6 +158,7 @@ else
             await _db.DeleteAccount(UserLogin.User);
             UserLogin.User = new UserModel();
             UserLogin.User.isActive = false;
+            UserLogin.User = null;
             NavigationManager.NavigateTo("/", forceLoad: true);
         }
     }
